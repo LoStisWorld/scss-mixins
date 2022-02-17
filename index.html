@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<script src="./main.js" defer></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+		<link rel="stylesheet" href="style.css" />
+		<title>MIXINS</title>
+	</head>
+	<body>
+		<header>
+			<h1>Mixins</h1>
+
+			<nav class="nav">
+				<a href="./index.html">Home</a>
+				<a href="./gallery.html">Gallery</a>
+			</nav>
+		</header>
+
+		<main class="pageContainer">
+			<h2>Pseudo Mixin</h2>
+			<div class="element">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, labore!</div>
+
+			<h2>FlexGrid Mixin (work in progress)</h2>
+			<div class="flexGrid">
+				<div>#</div>
+				<div>#</div>
+				<div>#</div>
+				<div>#</div>
+				<div>#</div>
+				<div>#</div>
+				<div>#</div>
+				<div>#</div>
+				<div>#</div>
+				<div>#</div>
+			</div>
+
+			<h2>Text Blend Mode Mixin</h2>
+			<div class="textBlend">
+				<div>White on Black</div>
+				<div>Black on White</div>
+			</div>
+
+			<h2>Item Counter Mixin</h2>
+			<div class="itemCounter">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+
+			<h2>Text hover Mixin</h2>
+			<ul class="linkHover">
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+			</ul>
+
+			<h2>Container hover Mixin</h2>
+			<figure class="imgHover">
+				<img src="./img/vWSC-wallpaper.jpg" alt="" />
+			</figure>
+
+			<h2>Button Style Mixin (work in progress)</h2>
+			<nav class="buttonNav">
+				<a href="#!">Button</a>
+				<a href="#!">Button</a>
+				<a href="#!">Button</a>
+				<a href="#!">Button</a>
+				<a href="#!">Button</a>
+				<a href="#!">Button</a>
+				<a href="#!">Button</a>
+				<a href="#!">Button</a>
+				<a href="#!">Button</a>
+			</nav>
+
+			<h2>PX to REM Mixin</h2>
+			<ul class="remall">
+				<li>
+					Mixin<br />
+					toRem(padding, 50px)<br /><br />
+					Output<br />padding: 3.125rem;
+				</li>
+				<li>
+					Mixin<br />
+					toRem(margin-top, 50px)<br />
+					toRem(padding, 20px, 60px)<br /><br />
+					Output<br />margin-top: 3.125rem;<br />
+					padding: 1.25rem 3.75rem;
+				</li>
+				<li>
+					<span>Mixin</span><br />
+					toRem(font-size, 32px)<br />
+					toRem(margin, 20px, 60px)<br />
+					toRem(padding, 20px, 10px, 15px, 40px)<br /><br />
+					Output<br />
+					font-size: 2rem;<br />
+					margin: 1.25rem 3.75rem;<br />
+					padding: 1.25rem 0.625rem 0.9375rem 2.5rem;<br />
+				</li>
+				<li>
+					Mixin<br />
+					toRem(padding-left, 80px)<br />
+					toRem(padding-right, 20px)<br />
+					toRem(font-size, 32px)<br /><br />
+					Output<br />
+					padding-left: 5rem;<br />
+					padding-right: 1.25rem;<br />
+					font-size: 2rem;<br />
+				</li>
+				<li>
+					Mixin<br />
+					toRem(height, 300px)<br />
+					toRem(width, 500px)<br />
+					toRem(padding, 20px)<br /><br />
+					Output<br />
+					height: 18.75rem;<br />
+					width: 31.25rem;<br />
+					padding: 1.25rem;<br />
+				</li>
+				<li>
+					<span>Mixin</span><br />
+					toRem(line-height, 50px)<br />
+					toRem(padding, 0px, 50px)<br /><br />
+					Output<br />
+					line-height: 3.125rem;<br />
+					padding: 0rem 3.125rem;
+				</li>
+				<li>
+					Mixin<br />
+					toRem(margin-top, -75px)<br />
+					toRem(padding, 20px)<br /><br />
+					Output<br />
+					margin-top: -4.6875rem;<br />
+					padding: 1.25rem;
+				</li>
+			</ul>
+
+			<h2>Box Shadow Mixin</h2>
+			<ul class="boxShadow">
+				<li>Shadow: top-left</li>
+				<li>Shadow: top</li>
+				<li>Shadow: top-right</li>
+				<li>Shadow: right</li>
+				<li>Shadow: bottom-right</li>
+				<li>Shadow: bottom</li>
+				<li>Shadow: bottom-left</li>
+				<li>Shadow: left</li>
+				<li>Shadow: around</li>
+			</ul>
+
+			<h2>Box Shadow Mixin (using inset)</h2>
+			<ul class="boxShadowInset">
+				<li>Shadow: top-left (using inset)</li>
+				<li>Shadow: top (using inset)</li>
+				<li>Shadow: top-right (using inset)</li>
+				<li>Shadow: right (using inset)</li>
+				<li>Shadow: bottom-right (using inset)</li>
+				<li>Shadow: bottom (using inset)</li>
+				<li>Shadow: bottom-left (using inset)</li>
+				<li>Shadow: left (using inset)</li>
+				<li>Shadow: around (using inset)</li>
+			</ul>
+
+			<h2>Outline Mixin</h2>
+			<ul class="outline">
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+				<li>item</li>
+			</ul>
+
+			<h2>Triangle Mixin</h2>
+			<ul class="triangle">
+				<li>Triangle: top-left</li>
+				<li>Triangle: top</li>
+				<li>Triangle: top-right</li>
+				<li>Triangle: right</li>
+				<li>Triangle: bottom-right</li>
+				<li>Triangle: bottom</li>
+				<li>Triangle: bottom-left</li>
+				<li>Triangle: left</li>
+			</ul>
+
+			<h2>Long Shadow Mixin</h2>
+			<ul class="longShadow">
+				<li>
+					<p>Long Shadow Mixin<br /><span>top-left</span></p>
+				</li>
+				<li>
+					<p>Long Shadow Mixin<br /><span>top</span></p>
+				</li>
+				<li>
+					<p>Long Shadow Mixin<br /><span>top-right</span></p>
+				</li>
+				<li>
+					<p>Long Shadow Mixin<br />right</p>
+				</li>
+				<li>
+					<p>Long Shadow Mixin<br />bottom-right</p>
+				</li>
+				<li>
+					<p>Long Shadow Mixin<br />bottom</p>
+				</li>
+				<li>
+					<p>Long Shadow Mixin<br />bottom-left</p>
+				</li>
+				<li>
+					<p>Long Shadow Mixin<br />left</p>
+				</li>
+			</ul>
+
+			<h2>Cut Text Mixin</h2>
+			<div class="cutText">
+				<a href="#!"><span>Home</span></a>
+				<a href="#!"><span>About</span></a>
+				<a href="#!"><span>Portfolio</span></a>
+			</div>
+
+			<h2>Text Style Mixin</h2>
+			<div class="textStyle">
+				<a href="#!">Home</a>
+				<a href="#!">About Us</a>
+				<a href="#!">Portfolio</a>
+				<a href="#!">Our Team</a>
+				<a href="#!">Contact</a>
+			</div>
+		</main>
+	</body>
+</html>

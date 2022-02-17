@@ -1,0 +1,508 @@
+// PSEUDO MIXIN //
+@mixin pseudo($pseudo: before, $pos: absolute, $content: "") {
+	@if $pseudo == before {
+		&::before {
+			content: $content;
+			position: $pos;
+			@content;
+		}
+	} @else if $pseudo == after {
+		&::after {
+			content: $content;
+			position: $pos;
+			@content;
+		}
+	} @else if $pseudo == both {
+		&::before,
+		&::after {
+			content: $content;
+			position: $pos;
+			@content;
+		}
+	}
+}
+
+// TRIANGLE MIXIN //
+@mixin triangle($color, $direction, $size) {
+	width: 0;
+	height: 0;
+	border-style: solid;
+
+	@if $direction == top {
+		border-width: 0 $size $size $size;
+		border-color: transparent transparent $color transparent;
+	} @else if $direction == top-right {
+		border-width: 0 $size $size 0;
+		border-color: transparent $color transparent transparent;
+	} @else if $direction == top-left {
+		border-width: $size $size 0 0;
+		border-color: $color transparent transparent transparent;
+	} @else if $direction == right {
+		border-width: $size 0 $size $size;
+		border-color: transparent transparent transparent $color;
+	} @else if $direction == bottom-right {
+		border-width: 0 0 $size $size;
+		border-color: transparent transparent $color transparent;
+	} @else if $direction == bottom {
+		border-width: $size $size 0 $size;
+		border-color: $color transparent transparent transparent;
+	} @else if $direction == bottom-left {
+		border-width: $size 0 0 $size;
+		border-color: transparent transparent transparent $color;
+	} @else if $direction == left {
+		border-width: $size $size $size 0;
+		border-color: transparent $color transparent transparent;
+	} @else {
+		@error "Variable in #{$color}, #{$direction}, #{$size} needs to set currently";
+	}
+	@content;
+}
+
+// FLEX GRID MIXIN //
+@mixin flexGrid($itemCount, $margin: 0) {
+	display: flex;
+	flex-wrap: wrap;
+	margin: -#{$margin * 2};
+
+	> * {
+		flex: 0 0 calc(100% / #{$itemCount});
+		margin: $margin;
+	}
+
+	@supports (display: grid) {
+		display: grid;
+		grid-template-columns: repeat($itemCount, 1fr);
+		grid-auto-rows: minmax(auto, 1fr);
+		gap: $margin;
+		margin: 0;
+
+		> * {
+			flex: inherit;
+			margin: 0;
+		}
+	}
+}
+
+// TEXT BLEND MODE MIXIN //
+@mixin textBlend($background-color) {
+	@if $background-color == black {
+		color: white;
+		background-color: black;
+		mix-blend-mode: multiply;
+		@content;
+	} @else if $background-color == white {
+		color: black;
+		background-color: white;
+		mix-blend-mode: screen;
+		@content;
+	} @else {
+		@error "Property #{$background-color} must be either black or white.";
+	}
+}
+
+// COUNTER MIXIN //
+@mixin itemCount($content: null) {
+	counter-increment: itemCount;
+
+	&::before {
+		@if $content {
+			content: $content counter(itemCount);
+			@content;
+		} @else {
+			content: counter(itemCount);
+			@content;
+		}
+	}
+}
+
+// MEDIA QUERY MIXIN //
+@mixin mediaSize($type, $width: null, $minmax: null) {
+	@if $type == mobile {
+		@media (max-width: 544px) {
+			@content;
+		}
+	} @else if $type == mobileUP {
+		@media (min-width: 545px) {
+			@content;
+		}
+	} @else if $type == tablet {
+		@media (min-width: 769px) {
+			@content;
+		}
+	} @else if $type == desktop {
+		@media (min-width: 1025px) {
+			@content;
+		}
+	} @else if $type == desktopXL {
+		@media (min-width: 1281px) {
+			@content;
+		}
+	} @else if $type == desktopXXL {
+		@media (min-width: 1921px) {
+			@content;
+		}
+	} @else if $type == desktop4K {
+		@media (min-width: 2561px) {
+			@content;
+		}
+	} @else if $type == custom {
+		@if $width and $minmax {
+			@if $minmax == min {
+				@media (min-width: $width) {
+					@content;
+				}
+			} @else if $minmax == max {
+				@media (max-width: $width) {
+					@content;
+				}
+			} @else {
+				@error "Property #{$minmax} must be either min or max.";
+			}
+		} @else if $width and not $minmax {
+			@media (min-width: $width) {
+				@content;
+			}
+		} @else {
+			@error "Property #{$width} or #{$minmax} is wrong.";
+		}
+	} @else {
+		@error "Property #{$type} is wrong.";
+	}
+}
+
+// LINK HOVER //
+@mixin linkHover($mainColor, $hoverColor) {
+	color: $mainColor;
+
+	&:hover,
+	&:focus,
+	&:focus-within {
+		color: $hoverColor;
+	}
+}
+
+// CONTAINER HOVER ICON MIXIN //
+@mixin iconOnHover($background: transparent, $direction: left, $icon: "✚", $time: 0.2s) {
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: $icon;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: $background;
+		transition: all $time 0.1s ease-in-out;
+
+		@if $direction == left {
+			transform: translateX(-100%);
+		} @else if $direction == right {
+			transform: translateX(100%);
+		} @else if $direction == top {
+			transform: translateY(-100%);
+		} @else if $direction == bottom {
+			transform: translateY(100%);
+		} @else {
+			@error "Property #{$direction} must be set to left,right,top or bottom.";
+		}
+
+		@content;
+	}
+
+	&:hover::before {
+		transform: translate(0, 0);
+	}
+}
+
+// GALLERY MIXIN //
+@mixin easyGallery($itemCount: 4, $margin: 0, $max-width: null) {
+	display: flex;
+	flex-wrap: wrap;
+	overflow: hidden;
+
+	@if $margin {
+		margin: -#{$margin / 2};
+	}
+
+	> * {
+		display: block;
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+		max-width: calc(100% / #{$itemCount});
+
+		@if $margin and not $max-width {
+			max-width: calc(100% / #{$itemCount} - #{$margin});
+			margin: #{$margin / 2};
+		} @else if $margin and $max-width {
+			margin: #{$margin / 2};
+			max-width: $max-width;
+		}
+	}
+
+	@supports (display: grid) {
+		display: grid;
+		grid-template-columns: repeat($itemCount, 1fr);
+		grid-auto-rows: auto;
+		grid-auto-flow: dense;
+		gap: $margin;
+		margin: 0;
+
+		@if $max-width {
+		}
+
+		> * {
+			margin: 0;
+			max-width: inherit;
+		}
+	}
+
+	@content;
+}
+
+@mixin buttonStyle($style: 1, $background-color: transparent, $font-color: null) {
+	text-align: center;
+
+	@if $style == 1 {
+		color: $font-color;
+		box-shadow: 0 0 5px rgba(grey, 0.1), 0 0 15px rgba(grey, 0.25);
+
+		&:hover {
+			background-color: $font-color;
+			color: $background-color;
+		}
+	} @else if $style == 2 {
+		color: $font-color;
+		font-weight: bold;
+		text-transform: uppercase;
+		border-radius: 50px;
+		background: linear-gradient(to top, $background-color, lighten($background-color, 10%));
+		border: 4px solid lighten($background-color, 10%);
+		text-shadow: 0 -2px 0 $background-color, 0 -4px 1px darken($background-color, 10%);
+	} @else if $style == 3 {
+		position: relative;
+		z-index: 1;
+		font-weight: bold;
+		text-transform: uppercase;
+		color: $font-color;
+		background-color: $background-color;
+
+		&::after {
+			content: "";
+			position: absolute;
+			pointer-events: none;
+			width: 100%;
+			height: 50%;
+			bottom: -55%;
+			left: 0;
+			background-color: rgba($background-color, 0.5);
+			transform: perspective(3rem) rotateX(60deg) scale(1.2);
+			filter: blur(1rem);
+			z-index: -1;
+		}
+	}
+
+	@content;
+}
+
+// PX TO REM MIXIN //
+@mixin toRem($value, $size, $sizeRight: null, $sizeBottom: null, $sizeLeft: null) {
+	$baseFontSize: 16px; // Base font-size on body element (standard is 16px)
+
+	@if $size and not $sizeRight and not $sizeBottom and not $sizeLeft {
+		$calcAll: #{$size / $baseFontSize}rem;
+		#{$value}: $calcAll;
+	} @else if $size and $sizeRight and not $sizeBottom and not $sizeLeft {
+		$calc2Ways: #{$size / $baseFontSize}rem #{$sizeRight / $baseFontSize}rem;
+		#{$value}: $calc2Ways;
+	} @else if $size and $sizeRight and $sizeBottom and not $sizeLeft {
+		$calc3Ways: #{$size / $baseFontSize}rem #{$sizeRight / $baseFontSize}rem #{$sizeBottom / $baseFontSize}rem;
+		#{$value}: $calc3Ways;
+	} @else if $size and $sizeRight and $sizeBottom and $sizeLeft {
+		$calc4Ways: #{$size / $baseFontSize}rem #{$sizeRight / $baseFontSize}rem #{$sizeBottom / $baseFontSize}rem #{$sizeLeft / $baseFontSize}rem;
+		#{$value}: $calc4Ways;
+	} @else {
+		@error "Property #{$value} or #{$size} or #{$sizeRight} or #{$sizeBottom} or #{$sizeLeft} is wrong. You need to use px value everywhere!";
+	}
+}
+
+// BOX SHADOW MIXIN //
+@mixin box-shadow($direction, $size, $blur, $color, $spread: 0, $inset: null) {
+	@if not $inset {
+		@if $direction == around {
+			box-shadow: 0 0 $blur $spread $color;
+		} @else if $direction == top-left {
+			box-shadow: -#{$size} -#{$size} $blur $spread $color;
+		} @else if $direction == top {
+			box-shadow: 0 -#{$size} $blur $spread $color;
+		} @else if $direction == top-right {
+			box-shadow: $size -#{$size} $blur $spread $color;
+		} @else if $direction == right {
+			box-shadow: $size 0 $blur $spread $color;
+		} @else if $direction == bottom-right {
+			box-shadow: $size $size $blur $spread $color;
+		} @else if $direction == bottom {
+			box-shadow: 0 $size $blur $spread $color;
+		} @else if $direction == bottom-left {
+			box-shadow: -#{$size} $size $blur $spread $color;
+		} @else if $direction == left {
+			box-shadow: -#{$size} 0 $blur $spread $color;
+		} @else {
+			@error "Property #{$direction}, #{$size}, #{$spread} or #{$blur} is wrong. Use the right property for #{$direction} and px for #{$size}, #{$spread} and #{$blur}";
+		}
+	} @else if $inset == inset {
+		@if $direction == around {
+			box-shadow: inset 0 0 $blur $spread $color;
+		} @else if $direction == top-left {
+			box-shadow: inset #{$size} #{$size} $blur $spread $color;
+		} @else if $direction == top {
+			box-shadow: inset 0 #{$size} $blur $spread $color;
+		} @else if $direction == top-right {
+			box-shadow: inset -#{$size} #{$size} $blur $spread $color;
+		} @else if $direction == right {
+			box-shadow: inset -#{$size} 0 $blur $spread $color;
+		} @else if $direction == bottom-right {
+			box-shadow: inset -#{$size} -#{$size} $blur $spread $color;
+		} @else if $direction == bottom {
+			box-shadow: inset 0 -#{$size} $blur $spread $color;
+		} @else if $direction == bottom-left {
+			box-shadow: inset $size -#{$size} $blur $spread $color;
+		} @else if $direction == left {
+			box-shadow: inset $size 0 $blur $spread $color;
+		} @else {
+			@error "Property #{$direction}, #{$size}, #{$spread} or #{$blur} is wrong. Use the right property for #{$direction} and px for #{$size}, #{$spread} and #{$blur}";
+		}
+	} @else {
+		@error "Property #{$inset} is wrong. You need to use inset to use it";
+	}
+}
+
+// OUTLINE MIXIN //
+@mixin outline($style, $width, $distance, $color, $direction: out) {
+	@if $direction == in {
+		outline: $width $style $color;
+		outline-offset: -#{$distance + $width};
+	} @else if $direction == out {
+		outline: $width $style $color;
+		outline-offset: #{$distance - $width};
+	} @else {
+		@error "Property #{$direction} is wrong. You need to use in or out to use it";
+	}
+}
+
+// LONG SHADOW MIXIN //
+@function calc-shadow($color, $size, $blur, $direction) {
+	$shadow: 0px 0px $blur $color;
+
+	@for $i from 1 through $size {
+		@if $direction == top-left {
+			$shadow: $shadow, -#{$i}px -#{$i}px $blur $color;
+		} @else if $direction == top {
+			$shadow: $shadow, 0 -#{$i}px $blur $color;
+		} @else if $direction == top-right {
+			$shadow: $shadow, #{$i}px -#{$i}px $blur $color;
+		} @else if $direction == right {
+			$shadow: $shadow, #{$i}px 0 $blur $color;
+		} @else if $direction == bottom-right {
+			$shadow: $shadow, #{$i}px #{$i}px $blur $color;
+		} @else if $direction == bottom {
+			$shadow: $shadow, 0 #{$i}px $blur $color;
+		} @else if $direction == bottom-left {
+			$shadow: $shadow, -#{$i}px #{$i}px $blur $color;
+		} @else if $direction == left {
+			$shadow: $shadow, -#{$i}px 0 $blur $color;
+		} @else {
+			@error "Property #{$direction} is wrong.";
+		}
+	}
+	@return $shadow;
+}
+
+@mixin long-shadow($color, $size, $direction: bottom-right, $blur: null) {
+	text-shadow: calc-shadow($color, $size, $blur, $direction);
+}
+
+// CUT TEXT //
+@mixin cut-text($hoverColor, $time: 0.2s, $horizontal: 0.06em, $vertical: 0.03em) {
+	&:hover {
+		color: currentColor;
+	}
+
+	@supports (clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%)) {
+		position: relative;
+		transition: color 0s $time ease;
+		z-index: 1;
+
+		&::before,
+		&::after {
+			content: attr(data-cuttext);
+			position: absolute;
+			color: currentColor;
+			text-align: center;
+			left: 0;
+			right: 0;
+			margin: auto;
+			transform: translate(0, 0);
+			transition: all $time ease;
+			z-index: -1;
+		}
+		&::before {
+			-webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+			clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+		}
+		&::after {
+			-webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+			clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+		}
+
+		&:hover,
+		&:focus,
+		&:focus-within,
+		&:focus-visible {
+			transition: none;
+			color: transparent;
+
+			&::before,
+			&::after {
+				color: $hoverColor;
+			}
+			&::before {
+				transform: translate(-#{$horizontal}, -#{$vertical});
+			}
+			&::after {
+				transform: translate($horizontal, $vertical);
+			}
+		}
+
+		@content;
+	}
+}
+
+// TEXT STYLE MIXIN //
+@mixin text-style($style: 1, $color: null, $fontSize: null) {
+	@if $style == 1 {
+		font-weight: bold;
+		-webkit-text-stroke: 1px rgba(white, 0.2);
+		text-stroke: 1px rgba(white, 0.2);
+		text-shadow: 0 1px 1px lighten($color, 10%), 0 2px 1px darken($color, 10%), 0 3px 1px darken($color, 10%), -1px 4px 1px darken($color, 10%), -1px 5px 5px darken($color, 10%), -1px 6px 1px currentColor, -1px 7px 5px darken($color, 10%);
+		font-size: $fontSize;
+		transform: translateY(0);
+		transition: all 0.2s ease;
+
+		&:hover {
+			text-shadow: 0 -1px 1px lighten($color, 25%), 0 1px 1px lighten($color, 10%), 0 1px 2px darken($color, 10%), 0 3px 2px darken($color, 10%), -1px 5px 1px darken($color, 10%);
+			transform: translateY(3px);
+		}
+		@content;
+	} @else if $style == 2 {
+		font-size: $fontSize;
+		font-weight: bolder;
+		text-shadow: 5px 0 1px $color, 0 3px 3px lighten($color, 10%), -5px 2px 1px darken($color, 10%);
+		@content;
+	}
+}
