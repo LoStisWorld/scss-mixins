@@ -53,7 +53,7 @@
 		border-width: $size $size $size 0;
 		border-color: transparent $color transparent transparent;
 	} @else {
-		@error "Variable in #{$color}, #{$direction}, #{$size} needs to set currently";
+		@error "Variable in #{$color}, #{$direction}, #{$size} needs to set currectly";
 	}
 	@content;
 }
