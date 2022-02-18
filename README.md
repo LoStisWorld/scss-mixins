@@ -10,6 +10,9 @@ Check out the Demofile if you want.
 	- [Text blend mixin](#text-blend-mixin)
 	- [Text stroke mixin](#text-stroke-mixin)
 	- [Text gradient mixin](#text-gradient-mixin)
+	- [Item counter mixin](#item-counter-mixin)
+	- [Link hover mixin](#link-hover-mixin)
+	- [Container hover mixin](#container-hover-mixin)
 
 <br/>
 
@@ -374,7 +377,7 @@ Allowed `width`, `color`
 
 > How to use
 
-Needed value `direction`, `color`
+Needed values `direction`, `color`
 
 ```scss
 .element {
@@ -432,5 +435,214 @@ Needed value `direction`, `color`
 			-webkit-text-fill-color: transparent;
         }
     }
+}
+```
+
+<br/>
+
+## Item counter mixin
+
+> The mixin
+
+```scss
+@mixin itemCount($content: null, $pseudo: before) {
+    counter-increment: itemCount;
+    $pos: #{$pseudo};
+
+    @if $pos == before or $pos == after {
+        &::#{$pos} {
+            @if $content {
+                content: $content counter(itemCount);
+                @content;
+            } @else {
+                content: counter(itemCount);
+                @content;
+            }
+        }
+    } @else {
+        @error "Property #{$pseudo} must be either before or after.";
+    }
+}
+```
+
+> How to use
+
+No values needed
+
+Allowed values `$content`, `$pseudo`
+
+```scss
+.element {
+    > .item {
+        @include itemCount;
+    }
+
+    > .item {
+        @include itemCount('# ') {
+			color: #fff;
+		}
+    }
+}
+```
+
+> Same like
+
+```scss {
+.element {
+    > .item {
+        &::before {
+			content: counter(itemCount);
+		}
+    }
+
+    > .item {
+        &::after {
+			content: "# " counter(itemCount);
+    		color: #fff;
+		}
+    }
+}
+```
+
+<br/>
+
+## Link hover mixin
+
+> The mixin
+
+```scss
+@mixin linkHover($hoverColor, $color: currentColor) {
+    color: $color;
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+        color: $hoverColor;
+    }
+}
+```
+
+> How to use
+
+Needed value `$hoverColor`
+
+Allowed values `$mainColor`
+
+```scss
+.element {
+    @include linkHover(#000);
+}
+
+.element {
+    @include linkHover(currentColor, #fff);
+}
+```
+
+> Same like
+
+```scss {
+.element {
+    color: currentColor;
+
+	&:hover,
+    &:focus,
+    &:focus-within {
+        color: #000;
+    }
+}
+
+.element {
+    color: #fff;
+
+	&:hover,
+    &:focus,
+    &:focus-within {
+        color: currentColor;
+    }
+}
+```
+
+<br/>
+
+## Container hover mixin
+
+> The mixin
+
+```scss
+@mixin iconOnHover($background: transparent, $direction: left, $icon: "✚", $time: 0.2s) {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: $icon;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: $background;
+        transition: all $time 0.1s ease-in-out;
+
+        @if $direction == left {
+            transform: translateX(-100%);
+        } @else if $direction == right {
+            transform: translateX(100%);
+        } @else if $direction == top {
+            transform: translateY(-100%);
+        } @else if $direction == bottom {
+            transform: translateY(100%);
+        } @else {
+            @error "Property #{$direction} must be set to left,right,top or bottom.";
+        }
+
+        @content;
+    }
+
+    &:hover::before {
+        transform: translate(0, 0);
+    }
+}
+```
+
+> How to use
+
+No values needed
+
+Default values `$background: transparent, $direction: left, $icon: '✚', $time: 0.2s`
+
+Allowed values `$background`, `$direction`, `$icon`, `$time`
+
+```scss
+.element {
+    @include iconOnHover(rgba(black, 0.75));
+}
+```
+
+> Same like
+
+```scss {
+.element {
+    position: relative;
+    overflow: hidden;
+
+	&::before {
+		content: "✚";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: rgba(0, 0, 0, 0.75);
+	}
+
+	&:hover::before {
+		transform: translate(0, 0);
+	}
 }
 ```

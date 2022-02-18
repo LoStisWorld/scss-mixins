@@ -194,7 +194,7 @@ main {
     display: flex;
 
     > * {
-        @include itemCount('💩 ');
+        @include itemCount;
         flex: 1;
         background-color: lightseagreen;
         padding: 2rem;
@@ -210,18 +210,19 @@ main {
     }
 }
 
-// LINK HOVER MIXIN //
-.linkHover {
+.itemCounter2 {
     display: flex;
-    list-style: none;
+    margin-top: 1rem;
 
     > * {
         flex: 1;
-        padding: 1rem;
-        cursor: pointer;
-        background-color: black;
+        background-color: rgb(45, 27, 112);
+        padding: 2rem;
         text-align: center;
-        @include linkHover(white, lightcoral);
+
+        @include itemCount('# ', after) {
+            color: #fff;
+        }
 
         &:not(:last-child) {
             margin-right: 5px;
@@ -229,7 +230,31 @@ main {
     }
 }
 
-// IMG HOVER ICON //
+// LINK HOVER MIXIN //
+.linkHover {
+    display: flex;
+    list-style: none;
+    color: red;
+
+    > * {
+        flex: 1;
+        padding: 1rem;
+        background-color: black;
+        text-align: center;
+        @include linkHover(#fff);
+        cursor: pointer;
+
+        &:nth-child(3) {
+            @include linkHover(currentColor, #fff);
+        }
+
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+    }
+}
+
+// CONTAINER HOVER ICON MIXIN //
 .imgHover {
     width: 100%;
     height: 350px;
@@ -252,33 +277,6 @@ main {
 // GALLERY MIXIN //
 .imgContainer {
     @include easyGallery(5, 5px);
-}
-
-// BUTTON MIXIN //
-.buttonNav {
-    background-color: white;
-    padding: 1rem;
-    border-radius: 6px;
-    display: flex;
-    flex-wrap: wrap;
-
-    > * {
-        margin: 10px;
-        flex: 1;
-        padding: 1rem 2rem;
-        text-decoration: none;
-    }
-
-    > :first-child {
-        @include buttonStyle(1, black, black);
-    }
-
-    > :nth-child(2) {
-        @include buttonStyle(2, greenyellow, white);
-    }
-    > :nth-child(3) {
-        @include buttonStyle(3, greenyellow, white);
-    }
 }
 
 // PX TO REM MIXIN //
@@ -658,22 +656,5 @@ main {
 
             @include cut-text(darkblue);
         }
-    }
-}
-
-// TEXT STYLE MIXIN //
-.textStyle {
-    > * {
-        display: inline-block;
-        text-decoration: none;
-        color: royalblue;
-        padding: 20px 50px;
-    }
-
-    > :first-child {
-        @include text-style(1, darkblue, 2rem);
-    }
-    > :nth-child(2) {
-        @include text-style(2, lightcoral, 3rem);
     }
 }

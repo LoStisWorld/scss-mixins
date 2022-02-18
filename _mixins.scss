@@ -120,17 +120,22 @@
 }
 
 // COUNTER MIXIN //
-@mixin itemCount($content: null) {
+@mixin itemCount($content: null, $pseudo: before) {
     counter-increment: itemCount;
+    $pos: #{$pseudo};
 
-    &::before {
-        @if $content {
-            content: $content counter(itemCount);
-            @content;
-        } @else {
-            content: counter(itemCount);
-            @content;
+    @if $pos == before or $pos == after {
+        &::#{$pos} {
+            @if $content {
+                content: $content counter(itemCount);
+                @content;
+            } @else {
+                content: $content counter(itemCount);
+                @content;
+            }
         }
+    } @else {
+        @error "Property #{$pseudo} must be either before or after.";
     }
 }
 
@@ -190,8 +195,8 @@
 }
 
 // LINK HOVER //
-@mixin linkHover($mainColor, $hoverColor) {
-    color: $mainColor;
+@mixin linkHover($hoverColor, $color: currentColor) {
+    color: $color;
 
     &:hover,
     &:focus,
@@ -208,14 +213,14 @@
     &::before {
         content: $icon;
         position: absolute;
-        width: 100%;
-        height: 100%;
         top: 0;
         left: 0;
+        width: 100%;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: $background;
+        background: $background;
         transition: all $time 0.1s ease-in-out;
 
         @if $direction == left {
@@ -278,51 +283,6 @@
         > * {
             margin: 0;
             max-width: inherit;
-        }
-    }
-
-    @content;
-}
-
-@mixin buttonStyle($style: 1, $background-color: transparent, $font-color: null) {
-    text-align: center;
-
-    @if $style == 1 {
-        color: $font-color;
-        box-shadow: 0 0 5px rgba(grey, 0.1), 0 0 15px rgba(grey, 0.25);
-
-        &:hover {
-            background-color: $font-color;
-            color: $background-color;
-        }
-    } @else if $style == 2 {
-        color: $font-color;
-        font-weight: bold;
-        text-transform: uppercase;
-        border-radius: 50px;
-        background: linear-gradient(to top, $background-color, lighten($background-color, 10%));
-        border: 4px solid lighten($background-color, 10%);
-        text-shadow: 0 -2px 0 $background-color, 0 -4px 1px darken($background-color, 10%);
-    } @else if $style == 3 {
-        position: relative;
-        z-index: 1;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: $font-color;
-        background-color: $background-color;
-
-        &::after {
-            content: '';
-            position: absolute;
-            pointer-events: none;
-            width: 100%;
-            height: 50%;
-            bottom: -55%;
-            left: 0;
-            background-color: rgba($background-color, 0.5);
-            transform: perspective(3rem) rotateX(60deg) scale(1.2);
-            filter: blur(1rem);
-            z-index: -1;
         }
     }
 
@@ -498,31 +458,6 @@
             }
         }
 
-        @content;
-    }
-}
-
-// TEXT STYLE MIXIN //
-@mixin text-style($style: 1, $color: null, $fontSize: null) {
-    @if $style == 1 {
-        font-weight: bold;
-        -webkit-text-stroke: 1px rgba(white, 0.2);
-        text-stroke: 1px rgba(white, 0.2);
-        text-shadow: 0 1px 1px lighten($color, 10%), 0 2px 1px darken($color, 10%), 0 3px 1px darken($color, 10%), -1px 4px 1px darken($color, 10%), -1px 5px 5px darken($color, 10%),
-            -1px 6px 1px currentColor, -1px 7px 5px darken($color, 10%);
-        font-size: $fontSize;
-        transform: translateY(0);
-        transition: all 0.2s ease;
-
-        &:hover {
-            text-shadow: 0 -1px 1px lighten($color, 25%), 0 1px 1px lighten($color, 10%), 0 1px 2px darken($color, 10%), 0 3px 2px darken($color, 10%), -1px 5px 1px darken($color, 10%);
-            transform: translateY(3px);
-        }
-        @content;
-    } @else if $style == 2 {
-        font-size: $fontSize;
-        font-weight: bolder;
-        text-shadow: 5px 0 1px $color, 0 3px 3px lighten($color, 10%), -5px 2px 1px darken($color, 10%);
         @content;
     }
 }
