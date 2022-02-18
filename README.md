@@ -187,3 +187,86 @@ Same like
 	}
 }
 ```
+
+<br/>
+
+## Text blend mixin
+
+The mixin
+
+```scss
+// TEXT BLEND MODE MIXIN //
+@mixin textBlend($background-color) {
+	@if $background-color == black {
+		color: white;
+		background-color: black;
+		mix-blend-mode: multiply;
+		@content;
+	} @else if $background-color == white {
+		color: black;
+		background-color: white;
+		mix-blend-mode: screen;
+		@content;
+	} @else {
+		@error "Property #{$background-color} must be either black or white.";
+	}
+}
+```
+
+How to use
+
+Needed value `background-color`
+
+Allowed `black`, `white`
+
+```scss
+.element {
+	> * {
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 4rem;
+		line-height: 1;
+		padding: 5rem 0;
+	}
+
+	.whiteText {
+		@include textBlend(black) {
+			font-weight: bold;
+		}
+	}
+
+	.blackText {
+		@include textBlend(white) {
+			font-weight: bolder;
+		}
+	}
+}
+```
+
+Same like
+
+```scss
+.element {
+	> * {
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 4rem;
+		line-height: 1;
+		padding: 5rem 0;
+	}
+
+	.whiteText {
+		color: white;
+		background-color: black;
+		mix-blend-mode: screen;
+		font-weight: bold;
+	}
+
+	.blackText {
+		color: black;
+		background-color: white;
+		mix-blend-mode: screen;
+		font-weight: bolder;
+	}
+}
+```
