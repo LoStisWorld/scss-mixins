@@ -368,10 +368,10 @@ Allowed `width`, `color`
 
 ```scss
 @mixin textGradient($direction, $colors...) {
-    display: inline-block;
-    background: linear-gradient($direction, $colors);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  display: inline-block;
+  background: linear-gradient($direction, $colors);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 ```
 
@@ -381,25 +381,25 @@ Needed values `direction`, `color`
 
 ```scss
 .element {
-    display: inline-flex;
-    flex-direction: column;
+  display: inline-flex;
+  flex-direction: column;
 
-    h3 {
-        font-size: 200%;
-        text-transform: uppercase;
+  h3 {
+    font-size: 200%;
+    text-transform: uppercase;
 
-        &:first-child {
-            @include textGradient(to right, #4158d0, #c850c0, #ffcc70);
-        }
-
-        &:nth-child(2) {
-            @include textGradient(25deg, #12c2e9, #c471ed, #fc00ff);
-        }
-
-        &:last-child {
-            @include textGradient(to bottom right, #0099f7 50%, #db36a4 50%);
-        }
+    &:first-child {
+      @include textGradient(to right, #4158d0, #c850c0, #ffcc70);
     }
+
+    &:nth-child(2) {
+      @include textGradient(25deg, #12c2e9, #c471ed, #fc00ff);
+    }
+
+    &:last-child {
+      @include textGradient(to bottom right, #0099f7 50%, #db36a4 50%);
+    }
+  }
 }
 ```
 
@@ -407,34 +407,34 @@ Needed values `direction`, `color`
 
 ```scss {
 .element {
-    display: inline-flex;
-    flex-direction: column;
+  display: inline-flex;
+  flex-direction: column;
 
-    h3 {
-        font-size: 200%;
-        text-transform: uppercase;
+  h3 {
+    font-size: 200%;
+    text-transform: uppercase;
 
-        &:first-child {
-			display: inline-block;
-            background: linear-gradient(to right, #4158d0, #c850c0, #ffcc70);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-        }
-
-        &:nth-child(2) {
-            display: inline-block;
-            background: linear-gradient(25deg, #12c2e9, #c471ed, #fc00ff);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-        }
-
-        &:last-child {
-            display: inline-block;
-			background: linear-gradient(to bottom right, #0099f7 50%, #db36a4 50%);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-        }
+    &:first-child {
+      display: inline-block;
+      background: linear-gradient(to right, #4158d0, #c850c0, #ffcc70);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+
+    &:nth-child(2) {
+      display: inline-block;
+      background: linear-gradient(25deg, #12c2e9, #c471ed, #fc00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    &:last-child {
+      display: inline-block;
+      background: linear-gradient(to bottom right, #0099f7 50%, #db36a4 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
 }
 ```
 
@@ -446,22 +446,22 @@ Needed values `direction`, `color`
 
 ```scss
 @mixin itemCount($content: null, $pseudo: before) {
-    counter-increment: itemCount;
-    $pos: #{$pseudo};
+  counter-increment: itemCount;
+  $pos: #{$pseudo};
 
-    @if $pos == before or $pos == after {
-        &::#{$pos} {
-            @if $content {
-                content: $content counter(itemCount);
-                @content;
-            } @else {
-                content: counter(itemCount);
-                @content;
-            }
-        }
-    } @else {
-        @error "Property #{$pseudo} must be either before or after.";
+  @if $pos == before or $pos == after {
+    &::#{$pos} {
+      @if $content {
+        content: $content counter(itemCount);
+        @content;
+      } @else {
+        content: counter(itemCount);
+        @content;
+      }
     }
+  } @else {
+    @error "Property #{$pseudo} must be either before or after.";
+  }
 }
 ```
 
@@ -473,15 +473,15 @@ Allowed values `$content`, `$pseudo`
 
 ```scss
 .element {
-    > .item {
-        @include itemCount;
-    }
+  > .item {
+      @include itemCount;
+  }
 
-    > .item {
-        @include itemCount('# ') {
-			color: #fff;
-		}
+  > .item {
+      @include itemCount('# ') {
+      color: #fff;
     }
+  }
 }
 ```
 
@@ -489,18 +489,18 @@ Allowed values `$content`, `$pseudo`
 
 ```scss {
 .element {
-    > .item {
-        &::before {
-			content: counter(itemCount);
-		}
+  > .item {
+    &::before {
+      content: counter(itemCount);
     }
+  }
 
-    > .item {
-        &::after {
-			content: "# " counter(itemCount);
-    		color: #fff;
-		}
+  > .item {
+    &::after {
+      content: "# " counter(itemCount);
+      color: #fff;
     }
+  }
 }
 ```
 
@@ -512,13 +512,13 @@ Allowed values `$content`, `$pseudo`
 
 ```scss
 @mixin linkHover($hoverColor, $color: currentColor) {
-    color: $color;
+  color: $color;
 
-    &:hover,
-    &:focus,
-    &:focus-within {
-        color: $hoverColor;
-    }
+  &:hover,
+  &:focus,
+  &:focus-within {
+    color: $hoverColor;
+  }
 }
 ```
 
@@ -530,11 +530,11 @@ Allowed values `$mainColor`
 
 ```scss
 .element {
-    @include linkHover(#000);
+  @include linkHover(#000);
 }
 
 .element {
-    @include linkHover(currentColor, #fff);
+  @include linkHover(currentColor, #fff);
 }
 ```
 
@@ -542,23 +542,23 @@ Allowed values `$mainColor`
 
 ```scss {
 .element {
-    color: currentColor;
+  color: currentColor;
 
-	&:hover,
+  &:hover,
     &:focus,
     &:focus-within {
-        color: #000;
+      color: #000;
     }
 }
 
 .element {
-    color: #fff;
+  color: #fff;
 
-	&:hover,
-    &:focus,
-    &:focus-within {
-        color: currentColor;
-    }
+  &:hover,
+  &:focus,
+  &:focus-within {
+    color: currentColor;
+  }
 }
 ```
 
@@ -570,40 +570,40 @@ Allowed values `$mainColor`
 
 ```scss
 @mixin iconOnHover($background: transparent, $direction: left, $icon: "✚", $time: 0.2s) {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
-    &::before {
-        content: $icon;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: $background;
-        transition: all $time 0.1s ease-in-out;
+  &::before {
+    content: $icon;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $background;
+    transition: all $time 0.1s ease-in-out;
 
-        @if $direction == left {
-            transform: translateX(-100%);
-        } @else if $direction == right {
-            transform: translateX(100%);
-        } @else if $direction == top {
-            transform: translateY(-100%);
-        } @else if $direction == bottom {
-            transform: translateY(100%);
-        } @else {
-            @error "Property #{$direction} must be set to left,right,top or bottom.";
-        }
-
-        @content;
+    @if $direction == left {
+        transform: translateX(-100%);
+    } @else if $direction == right {
+        transform: translateX(100%);
+    } @else if $direction == top {
+        transform: translateY(-100%);
+    } @else if $direction == bottom {
+        transform: translateY(100%);
+    } @else {
+        @error "Property #{$direction} must be set to left,right,top or bottom.";
     }
 
-    &:hover::before {
-        transform: translate(0, 0);
-    }
+    @content;
+  }
+
+  &:hover::before {
+    transform: translate(0, 0);
+  }
 }
 ```
 
@@ -617,7 +617,7 @@ Allowed values `$background`, `$direction`, `$icon`, `$time`
 
 ```scss
 .element {
-    @include iconOnHover(rgba(black, 0.75));
+  @include iconOnHover(rgba(black, 0.75));
 }
 ```
 
@@ -625,8 +625,8 @@ Allowed values `$background`, `$direction`, `$icon`, `$time`
 
 ```scss {
 .element {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
 	&::before {
 		content: "✚";
