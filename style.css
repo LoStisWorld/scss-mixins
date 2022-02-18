@@ -181,6 +181,44 @@ main ul {
   font-weight: bolder;
 }
 
+.textStroke {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.textStroke > * {
+  margin-right: 1rem;
+  color: red;
+}
+
+.textStroke > p {
+  font-size: 300%;
+  font-weight: bold;
+}
+
+.textStroke > p:first-child {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px currentColor;
+}
+
+.textStroke > p:nth-child(2) {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 5px black;
+  font-size: 500%;
+}
+
+.textStroke > p:last-child {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 3px lightcoral;
+  letter-spacing: 2px;
+}
+
 .itemCounter {
   display: -webkit-box;
   display: -ms-flexbox;

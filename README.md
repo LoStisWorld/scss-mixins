@@ -8,6 +8,7 @@ Check out the Demofile if you want.
 	- [Pseudo mixin](#pseudo-mixin)
 	- [Triangle mixin](#triangle-mixin)
 	- [Text blend mixin](#text-blend-mixin)
+	- [Text stroke mixin](#text-stroke-mixin)
 
 <br/>
 
@@ -197,7 +198,7 @@ Directions `top`, `top-right`, `top-left`, `bottom`, `bottom-right`, `bottom-lef
 
 ## Text blend mixin
 
-The mixin
+> The mixin
 
 ```scss
 // TEXT BLEND MODE MIXIN //
@@ -218,7 +219,7 @@ The mixin
 }
 ```
 
-How to use
+> How to use
 
 Needed value `background-color`
 
@@ -248,7 +249,7 @@ Allowed `black`, `white`
 }
 ```
 
-Same like
+> Same like
 
 ```scss
 .element {
@@ -273,5 +274,81 @@ Same like
 		mix-blend-mode: screen;
 		font-weight: bolder;
 	}
+}
+```
+
+<br/>
+
+## Text stroke mixin
+
+> The mixin
+
+```scss
+@mixin textStroke($width, $color: null) {
+	-webkit-text-fill-color: transparent;
+	@if $color {
+		-webkit-text-stroke: $width $color;
+	} @else {
+		-webkit-text-stroke: $width currentColor;
+	}
+	@content;
+}
+```
+
+> How to use
+
+Needed value `width`
+
+Allowed `width`, `color`
+
+```scss
+.element {
+	p {
+		color: red;
+		font-size: 300%;
+		font-weight: bold;
+		&:first-child {
+			@include textStroke(1px);
+		}
+		&:nth-child(2) {
+			@include textStroke(5px, rgb(0, 0, 0)) {
+				font-size: 500%;
+			}
+		}
+		&:last-child {
+			@include textStroke(3px, lightcoral) {
+				letter-spacing: 2px;
+			}
+		}
+	}
+}
+```
+
+> Same like
+
+```scss {
+.element {
+	p {
+		color: red;
+		font-size: 300%;
+		font-weight: bold;
+
+		&:first-child {
+			-webkit-text-fill-color: transparent;
+			-webkit-text-stroke: 1px currentColor;
+		}
+
+		&:nth-child(2) {
+			-webkit-text-fill-color: transparent;
+		    -webkit-text-stroke: 5px rgb(0, 0, 0);
+			font-size: 500%;
+		}
+
+		&:last-child {
+			-webkit-text-fill-color: transparent;
+			-webkit-text-stroke: 3px lightcoral;
+			letter-spacing: 2px;
+		}
+	}	
 }
 ```
