@@ -5,14 +5,14 @@ This is a list of some small SCSS mixins that can make things easier.
 Check out the Demofile if you want.
 
 - [SCSS MIXIN LIST](#scss-mixin-list)
-	- [Pseudo mixin](#pseudo-mixin)
-	- [Triangle mixin](#triangle-mixin)
-	- [Text blend mixin](#text-blend-mixin)
-	- [Text stroke mixin](#text-stroke-mixin)
-	- [Text gradient mixin](#text-gradient-mixin)
-	- [Item counter mixin](#item-counter-mixin)
-	- [Link hover mixin](#link-hover-mixin)
-	- [Container hover mixin](#container-hover-mixin)
+  - [Pseudo mixin](#pseudo-mixin)
+  - [Triangle mixin](#triangle-mixin)
+  - [Text blend mixin](#text-blend-mixin)
+  - [Text stroke mixin](#text-stroke-mixin)
+  - [Text gradient mixin](#text-gradient-mixin)
+  - [Item counter mixin](#item-counter-mixin)
+  - [Link hover mixin](#link-hover-mixin)
+  - [Container hover mixin](#container-hover-mixin)
 
 <br/>
 
@@ -22,26 +22,26 @@ Check out the Demofile if you want.
 
 ```scss
 @mixin pseudo($pseudo: before, $pos: absolute, $content: "") {
-	@if $pseudo == before {
-		&::before {
-			content: $content;
-			position: $pos;
-			@content;
-		}
-	} @else if $pseudo == after {
-		&::after {
-			content: $content;
-			position: $pos;
-			@content;
-		}
-	} @else if $pseudo == both {
-		&::before,
-		&::after {
-			content: $content;
-			position: $pos;
-			@content;
-		}
-	}
+  @if $pseudo == before {
+    &::before {
+      content: $content;
+      position: $pos;
+      @content;
+    }
+  } @else if $pseudo == after {
+    &::after {
+      content: $content;
+      position: $pos;
+      @content;
+    }
+  } @else if $pseudo == both {
+    &::before,
+    &::after {
+      content: $content;
+      position: $pos;
+      @content;
+    }
+  }
 }
 ```
 
@@ -51,19 +51,19 @@ Default values `::before`, `position: absolute`, `content: ""`
 
 ```scss
 .element {
-	position: relative;
+  position: relative;
 
-	@include pseudo(both, relative, "★");
+  @include pseudo(both, relative, "★");
 
-	@include pseudo() {
-		top: -1rem;
-		left: -1rem;
-	}
+  @include pseudo() {
+    top: -1rem;
+    left: -1rem;
+  }
 
-	@include pseudo(after) {
-		right: -1rem;
-		bottom: -1rem;
-	}
+  @include pseudo(after) {
+    right: -1rem;
+    bottom: -1rem;
+  }
 }
 ```
 
@@ -71,27 +71,27 @@ Default values `::before`, `position: absolute`, `content: ""`
 
 ```css
 .element {
-	position: relative;
+  position: relative;
 
-	&::before,
-	&::after {
-		content: "★";
-		position: relative;
-	}
+  &::before,
+  &::after {
+    content: "★";
+    position: relative;
+  }
 
-	&::before {
-		content: "";
-		position: absolute;
-		top: -1rem;
-		left: -1rem;
-	}
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+  }
 
-	&::after {
-		content: "";
-		position: absolute;
-		right: -1rem;
-		bottom: -1rem;
-	}
+  &::after {
+    content: "";
+    position: absolute;
+    right: -1rem;
+    bottom: -1rem;
+  }
 }
 ```
 
@@ -103,38 +103,38 @@ Default values `::before`, `position: absolute`, `content: ""`
 
 ```scss
 @mixin triangle($color, $direction, $size) {
-	width: 0;
-	height: 0;
-	border-style: solid;
+  width: 0;
+  height: 0;
+  border-style: solid;
 
-	@if $direction == top {
-		border-width: 0 $size $size $size;
-		border-color: transparent transparent $color transparent;
-	} @else if $direction == top-right {
-		border-width: 0 $size $size 0;
-		border-color: transparent $color transparent transparent;
-	} @else if $direction == top-left {
-		border-width: $size $size 0 0;
-		border-color: $color transparent transparent transparent;
-	} @else if $direction == right {
-		border-width: $size 0 $size $size;
-		border-color: transparent transparent transparent $color;
-	} @else if $direction == bottom-right {
-		border-width: 0 0 $size $size;
-		border-color: transparent transparent $color transparent;
-	} @else if $direction == bottom {
-		border-width: $size $size 0 $size;
-		border-color: $color transparent transparent transparent;
-	} @else if $direction == bottom-left {
-		border-width: $size 0 0 $size;
-		border-color: transparent transparent transparent $color;
-	} @else if $direction == left {
-		border-width: $size $size $size 0;
-		border-color: transparent $color transparent transparent;
-	} @else {
-		@error "Variable in #{$color}, #{$direction}, #{$size} needs to set currectly";
-	}
-	@content;
+  @if $direction == top {
+    border-width: 0 $size $size $size;
+    border-color: transparent transparent $color transparent;
+  } @else if $direction == top-right {
+    border-width: 0 $size $size 0;
+    border-color: transparent $color transparent transparent;
+  } @else if $direction == top-left {
+    border-width: $size $size 0 0;
+    border-color: $color transparent transparent transparent;
+  } @else if $direction == right {
+    border-width: $size 0 $size $size;
+    border-color: transparent transparent transparent $color;
+  } @else if $direction == bottom-right {
+    border-width: 0 0 $size $size;
+    border-color: transparent transparent $color transparent;
+  } @else if $direction == bottom {
+    border-width: $size $size 0 $size;
+    border-color: $color transparent transparent transparent;
+  } @else if $direction == bottom-left {
+    border-width: $size 0 0 $size;
+    border-color: transparent transparent transparent $color;
+  } @else if $direction == left {
+    border-width: $size $size $size 0;
+    border-color: transparent $color transparent transparent;
+  } @else {
+    @error "Variable in #{$color}, #{$direction}, #{$size} needs to set currectly";
+  }
+  @content;
 }
 ```
 
@@ -146,23 +146,23 @@ Directions `top`, `top-right`, `top-left`, `bottom`, `bottom-right`, `bottom-lef
 
 ```scss
 .element {
-	position: relative;
+  position: relative;
 
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		@include triangle(aliceblue, top-left, 20px);
-	}
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    @include triangle(aliceblue, top-left, 20px);
+  }
 
-	&::after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		@include triangle(red, bottom-right, 10px);
-	}
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    @include triangle(red, bottom-right, 10px);
+  }
 }
 ```
 
@@ -170,31 +170,31 @@ Directions `top`, `top-right`, `top-left`, `bottom`, `bottom-right`, `bottom-lef
 
 ```scss
 .element {
-	position: relative;
+  position: relative;
 
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 0;
-		height: 0;
-		border-style: solid;
-		border-width: 20px 20px 0 0;
-		border-color: aliceblue transparent transparent transparent;
-	}
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 20px 20px 0 0;
+    border-color: aliceblue transparent transparent transparent;
+  }
 
-	&::after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 0;
-		height: 0;
-		border-style: solid;
-		border-width: 10px 0 0 10px;
-		border-color: transparent transparent transparent red;
-	}
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 0 10px;
+    border-color: transparent transparent transparent red;
+  }
 }
 ```
 
@@ -207,19 +207,19 @@ Directions `top`, `top-right`, `top-left`, `bottom`, `bottom-right`, `bottom-lef
 ```scss
 // TEXT BLEND MODE MIXIN //
 @mixin textBlend($background-color) {
-	@if $background-color == black {
-		color: white;
-		background-color: black;
-		mix-blend-mode: multiply;
-		@content;
-	} @else if $background-color == white {
-		color: black;
-		background-color: white;
-		mix-blend-mode: screen;
-		@content;
-	} @else {
-		@error "Property #{$background-color} must be either black or white.";
-	}
+  @if $background-color == black {
+    color: white;
+    background-color: black;
+    mix-blend-mode: multiply;
+    @content;
+  } @else if $background-color == white {
+    color: black;
+    background-color: white;
+    mix-blend-mode: screen;
+    @content;
+  } @else {
+    @error "Property #{$background-color} must be either black or white.";
+  }
 }
 ```
 
@@ -231,25 +231,25 @@ Allowed `black`, `white`
 
 ```scss
 .element {
-	> * {
-		text-align: center;
-		text-transform: uppercase;
-		font-size: 4rem;
-		line-height: 1;
-		padding: 5rem 0;
-	}
+  > * {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4rem;
+    line-height: 1;
+    padding: 5rem 0;
+  }
 
-	.whiteText {
-		@include textBlend(black) {
-			font-weight: bold;
-		}
-	}
+  .whiteText {
+    @include textBlend(black) {
+      font-weight: bold;
+    }
+  }
 
-	.blackText {
-		@include textBlend(white) {
-			font-weight: bolder;
-		}
-	}
+  .blackText {
+    @include textBlend(white) {
+      font-weight: bolder;
+    }
+  }
 }
 ```
 
@@ -257,27 +257,27 @@ Allowed `black`, `white`
 
 ```scss
 .element {
-	> * {
-		text-align: center;
-		text-transform: uppercase;
-		font-size: 4rem;
-		line-height: 1;
-		padding: 5rem 0;
-	}
+  > * {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4rem;
+    line-height: 1;
+    padding: 5rem 0;
+  }
 
-	.whiteText {
-		color: white;
-		background-color: black;
-		mix-blend-mode: screen;
-		font-weight: bold;
-	}
+  .whiteText {
+    color: white;
+    background-color: black;
+    mix-blend-mode: screen;
+    font-weight: bold;
+  }
 
-	.blackText {
-		color: black;
-		background-color: white;
-		mix-blend-mode: screen;
-		font-weight: bolder;
-	}
+  .blackText {
+    color: black;
+    background-color: white;
+    mix-blend-mode: screen;
+    font-weight: bolder;
+  }
 }
 ```
 
@@ -289,13 +289,14 @@ Allowed `black`, `white`
 
 ```scss
 @mixin textStroke($width, $color: null) {
-	-webkit-text-fill-color: transparent;
-	@if $color {
-		-webkit-text-stroke: $width $color;
-	} @else {
-		-webkit-text-stroke: $width currentColor;
-	}
-	@content;
+  -webkit-text-fill-color: transparent;
+  @if $color {
+    -webkit-text-stroke: $width $color;
+  } @else {
+    -webkit-text-stroke: $width currentColor;
+  }
+
+  @content;
 }
 ```
 
@@ -307,27 +308,27 @@ Allowed `width`, `color`
 
 ```scss
 .element {
-	p {
-		color: red;
-		font-size: 300%;
-		font-weight: bold;
+  p {
+    color: red;
+    font-size: 300%;
+    font-weight: bold;
 
-		&:first-child {
-			@include textStroke(1px);
-		}
+    &:first-child {
+      @include textStroke(1px);
+    }
 
-		&:nth-child(2) {
-			@include textStroke(5px, rgb(0, 0, 0)) {
-				font-size: 500%;
-			}
-		}
-		
-		&:last-child {
-			@include textStroke(3px, lightcoral) {
-				letter-spacing: 2px;
-			}
-		}
-	}
+    &:nth-child(2) {
+      @include textStroke(5px, rgb(0, 0, 0)) {
+        font-size: 500%;
+      }
+    }
+
+    &:last-child {
+      @include textStroke(3px, lightcoral) {
+        letter-spacing: 2px;
+      }
+    }
+  }
 }
 ```
 
@@ -335,28 +336,28 @@ Allowed `width`, `color`
 
 ```scss {
 .element {
-	p {
-		color: red;
-		font-size: 300%;
-		font-weight: bold;
+  p {
+    color: red;
+    font-size: 300%;
+    font-weight: bold;
 
-		&:first-child {
-			-webkit-text-fill-color: transparent;
-			-webkit-text-stroke: 1px currentColor;
-		}
+    &:first-child {
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 1px currentColor;
+    }
 
-		&:nth-child(2) {
-			-webkit-text-fill-color: transparent;
-		    -webkit-text-stroke: 5px rgb(0, 0, 0);
-			font-size: 500%;
-		}
+    &:nth-child(2) {
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 5px rgb(0, 0, 0);
+      font-size: 500%;
+    }
 
-		&:last-child {
-			-webkit-text-fill-color: transparent;
-			-webkit-text-stroke: 3px lightcoral;
-			letter-spacing: 2px;
-		}
-	}	
+    &:last-child {
+      -webkit-text-fill-color: transparent;
+      -webkit-text-stroke: 3px lightcoral;
+      letter-spacing: 2px;
+    }
+  }
 }
 ```
 
@@ -474,11 +475,11 @@ Allowed values `$content`, `$pseudo`
 ```scss
 .element {
   > .item {
-      @include itemCount;
+    @include itemCount;
   }
 
   > .item {
-      @include itemCount('# ') {
+    @include itemCount("# ") {
       color: #fff;
     }
   }
@@ -545,10 +546,10 @@ Allowed values `$mainColor`
   color: currentColor;
 
   &:hover,
-    &:focus,
-    &:focus-within {
-      color: #000;
-    }
+  &:focus,
+  &:focus-within {
+    color: #000;
+  }
 }
 
 .element {
@@ -569,7 +570,12 @@ Allowed values `$mainColor`
 > The mixin
 
 ```scss
-@mixin iconOnHover($background: transparent, $direction: left, $icon: "✚", $time: 0.2s) {
+@mixin iconOnHover(
+  $background: transparent,
+  $direction: left,
+  $icon: "✚",
+  $time: 0.2s
+) {
   position: relative;
   overflow: hidden;
 
@@ -587,15 +593,15 @@ Allowed values `$mainColor`
     transition: all $time 0.1s ease-in-out;
 
     @if $direction == left {
-        transform: translateX(-100%);
+      transform: translateX(-100%);
     } @else if $direction == right {
-        transform: translateX(100%);
+      transform: translateX(100%);
     } @else if $direction == top {
-        transform: translateY(-100%);
+      transform: translateY(-100%);
     } @else if $direction == bottom {
-        transform: translateY(100%);
+      transform: translateY(100%);
     } @else {
-        @error "Property #{$direction} must be set to left,right,top or bottom.";
+      @error "Property #{$direction} must be set to left,right,top or bottom.";
     }
 
     @content;
@@ -628,21 +634,21 @@ Allowed values `$background`, `$direction`, `$icon`, `$time`
   position: relative;
   overflow: hidden;
 
-	&::before {
-		content: "✚";
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background: rgba(0, 0, 0, 0.75);
-	}
+  &::before {
+    content: "✚";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.75);
+  }
 
-	&:hover::before {
-		transform: translate(0, 0);
-	}
+  &:hover::before {
+    transform: translate(0, 0);
+  }
 }
 ```
