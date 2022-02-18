@@ -4,6 +4,11 @@ This is a list of some small SCSS mixins that can make things easier.
 
 Check out the Demofile if you want.
 
+- [SCSS MIXIN LIST](#scss-mixin-list)
+	- [Pseudo mixin](#pseudo-mixin)
+	- [Triangle mixin](#triangle-mixin)
+	- [Text blend mixin](#text-blend-mixin)
+
 <br/>
 
 ## Pseudo mixin
