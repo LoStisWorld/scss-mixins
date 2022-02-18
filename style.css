@@ -7,11 +7,11 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: aliceblue;
 }
 
-body[data-page-id="gallery"] main {
+body[data-page-id='gallery'] main {
   padding: 3rem 0;
 }
 
@@ -219,6 +219,44 @@ main ul {
   letter-spacing: 2px;
 }
 
+.textGradient {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.textGradient h3 {
+  font-size: 200%;
+  text-transform: uppercase;
+}
+
+.textGradient h3:first-child {
+  display: inline-block;
+  background: -webkit-gradient(linear, left top, right top, from(#4158d0), color-stop(#c850c0), to(#ffcc70));
+  background: linear-gradient(to right, #4158d0, #c850c0, #ffcc70);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.textGradient h3:nth-child(2) {
+  display: inline-block;
+  background: linear-gradient(25deg, #12c2e9, #c471ed, #fc00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.textGradient h3:last-child {
+  display: inline-block;
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(50%, #0099f7), color-stop(50%, #db36a4));
+  background: linear-gradient(to bottom right, #0099f7 50%, #db36a4 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .itemCounter {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -415,7 +453,7 @@ main ul {
 }
 
 .buttonNav > :nth-child(3)::after {
-  content: "";
+  content: '';
   position: absolute;
   pointer-events: none;
   width: 100%;

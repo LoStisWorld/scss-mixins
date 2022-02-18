@@ -1,656 +1,679 @@
 * {
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	background-color: aliceblue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: aliceblue;
 
-	&[data-page-id="gallery"] main {
-		padding: 3rem 0;
-	}
+    &[data-page-id='gallery'] main {
+        padding: 3rem 0;
+    }
 }
 
 .pageContainer {
-	width: 100%;
-	margin: 0 auto;
-	padding: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 header {
-	background-color: black;
-	color: white;
-	text-align: center;
-	padding: 2rem;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 2rem;
 
-	nav {
-		margin-top: 1rem;
+    nav {
+        margin-top: 1rem;
 
-		> a {
-			display: inline-block;
-			text-decoration: none;
-			color: black;
-			font-weight: bold;
-			background-color: lightcyan;
-			padding: 0.5rem 2rem;
+        > a {
+            display: inline-block;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            background-color: lightcyan;
+            padding: 0.5rem 2rem;
 
-			&:hover,
-			&.active {
-				background-color: lightsalmon;
-				color: white;
-			}
-		}
-	}
+            &:hover,
+            &.active {
+                background-color: lightsalmon;
+                color: white;
+            }
+        }
+    }
 }
 
 main {
-	padding: 10rem 0;
+    padding: 10rem 0;
 
-	h2 {
-		font-weight: bold;
-		text-transform: uppercase;
-		margin-bottom: 0.5rem;
+    h2 {
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
 
-		&:not(:first-child) {
-			margin-top: 3rem;
-		}
-	}
+        &:not(:first-child) {
+            margin-top: 3rem;
+        }
+    }
 
-	ul {
-		list-style: none;
-	}
+    ul {
+        list-style: none;
+    }
 }
 
-@import "./mixins";
+@import './mixins';
 
 // MEDIA QUERY MIXIN //
 .pageContainer {
-	@include mediaSize(mobileUP) {
-		width: 95%;
-	}
-	@include mediaSize(tablet) {
-		width: 90%;
-	}
-	@include mediaSize(desktop) {
-		width: 85%;
-	}
-	@include mediaSize(custom, 1200px) {
-		width: 85%;
-	}
-	@include mediaSize(custom, 1600px, min) {
-		width: 80%;
-	}
+    @include mediaSize(mobileUP) {
+        width: 95%;
+    }
+    @include mediaSize(tablet) {
+        width: 90%;
+    }
+    @include mediaSize(desktop) {
+        width: 85%;
+    }
+    @include mediaSize(custom, 1200px) {
+        width: 85%;
+    }
+    @include mediaSize(custom, 1600px, min) {
+        width: 80%;
+    }
 }
 
 // PSEUDO MIXIN //
 .element {
-	background-color: lightblue;
-	padding: 1rem;
-	position: relative;
+    background-color: lightblue;
+    padding: 1rem;
+    position: relative;
 
-	@include pseudo(both, relative, "★") {
-		margin: 0 1rem;
-		padding: 0 1rem;
-		color: white;
-		background-color: lightcoral;
-	}
+    @include pseudo(both, relative, '★') {
+        margin: 0 1rem;
+        padding: 0 1rem;
+        color: white;
+        background-color: lightcoral;
+    }
 }
 
 // FLEX GRID MIXIN //
 .flexGrid {
-	@include flexGrid(10, 10px);
+    @include flexGrid(10, 10px);
 
-	> * {
-		text-align: center;
-		background-color: indianred;
-	}
+    > * {
+        text-align: center;
+        background-color: indianred;
+    }
 }
 
 // TEXT BLEND MODE MIXIN //
 .textBlend {
-	display: flex;
-	background: url(./img/vWSC-wallpaper.jpg) center center/cover, lightcoral;
+    display: flex;
+    background: url(./img/vWSC-wallpaper.jpg) center center/cover, lightcoral;
 
-	> * {
-		flex: 1;
-		text-align: center;
-		padding: 5rem 0;
-		text-transform: uppercase;
-		line-height: 1;
-	}
+    > * {
+        flex: 1;
+        text-align: center;
+        padding: 5rem 0;
+        text-transform: uppercase;
+        line-height: 1;
+    }
 
-	> :first-child {
-		@include textBlend(black) {
-			font-size: 4rem;
-			font-weight: bold;
-		}
-	}
+    > :first-child {
+        @include textBlend(black) {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+    }
 
-	> :last-child {
-		@include textBlend(white) {
-			font-size: 4rem;
-			font-weight: bolder;
-		}
-	}
+    > :last-child {
+        @include textBlend(white) {
+            font-size: 4rem;
+            font-weight: bolder;
+        }
+    }
 }
 
 // TEXT STROKE MIXIN //
 .textStroke {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	> * {
-		margin-right: 1rem;
-		color: red;
-	}
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    > * {
+        margin-right: 1rem;
+        color: red;
+    }
 
-	> p {
-		font-size: 300%;
-		font-weight: bold;
+    > p {
+        font-size: 300%;
+        font-weight: bold;
 
-		&:first-child {
-			@include textStroke(1px);
-		}
-		&:nth-child(2) {
-			@include textStroke(5px, rgb(0, 0, 0)) {
-				font-size: 500%;
-			}
-		}
-		&:last-child {
-			@include textStroke(3px, lightcoral) {
-				letter-spacing: 2px;
-			}
-		}
-	}
+        &:first-child {
+            @include textStroke(1px);
+        }
+        &:nth-child(2) {
+            @include textStroke(5px, rgb(0, 0, 0)) {
+                font-size: 500%;
+            }
+        }
+        &:last-child {
+            @include textStroke(3px, lightcoral) {
+                letter-spacing: 2px;
+            }
+        }
+    }
+}
+
+// TEXT GRADIENT //
+.textGradient {
+    display: inline-flex;
+    flex-direction: column;
+
+    h3 {
+        font-size: 200%;
+        text-transform: uppercase;
+
+        &:first-child {
+            @include textGradient(to right, #4158d0, #c850c0, #ffcc70);
+        }
+
+        &:nth-child(2) {
+            @include textGradient(25deg, #12c2e9, #c471ed, #fc00ff);
+        }
+
+        &:last-child {
+            @include textGradient(to bottom right, #0099f7 50%, #db36a4 50%);
+        }
+    }
 }
 
 // ITEM COUNTER MIXIN //
 .itemCounter {
-	display: flex;
+    display: flex;
 
-	> * {
-		@include itemCount("💩 ");
-		flex: 1;
-		background-color: lightseagreen;
-		padding: 2rem;
-		text-align: center;
+    > * {
+        @include itemCount('💩 ');
+        flex: 1;
+        background-color: lightseagreen;
+        padding: 2rem;
+        text-align: center;
 
-		&::before {
-			color: white;
-		}
+        &::before {
+            color: white;
+        }
 
-		&:not(:last-child) {
-			margin-right: 5px;
-		}
-	}
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+    }
 }
 
 // LINK HOVER MIXIN //
 .linkHover {
-	display: flex;
-	list-style: none;
+    display: flex;
+    list-style: none;
 
-	> * {
-		flex: 1;
-		padding: 1rem;
-		cursor: pointer;
-		background-color: black;
-		text-align: center;
-		@include linkHover(white, lightcoral);
+    > * {
+        flex: 1;
+        padding: 1rem;
+        cursor: pointer;
+        background-color: black;
+        text-align: center;
+        @include linkHover(white, lightcoral);
 
-		&:not(:last-child) {
-			margin-right: 5px;
-		}
-	}
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+    }
 }
 
 // IMG HOVER ICON //
 .imgHover {
-	width: 100%;
-	height: 350px;
-	@include iconOnHover(rgba(black, 0.75));
+    width: 100%;
+    height: 350px;
+    @include iconOnHover(rgba(black, 0.75));
 
-	&::before {
-		font-weight: bold;
-		text-transform: uppercase;
-		font-size: 3rem;
-		color: white;
-	}
+    &::before {
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3rem;
+        color: white;
+    }
 
-	> img {
-		object-fit: cover;
-		height: 100%;
-		width: 100%;
-	}
+    > img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+    }
 }
 
 // GALLERY MIXIN //
 .imgContainer {
-	@include easyGallery(5, 5px);
+    @include easyGallery(5, 5px);
 }
 
 // BUTTON MIXIN //
 .buttonNav {
-	background-color: white;
-	padding: 1rem;
-	border-radius: 6px;
-	display: flex;
-	flex-wrap: wrap;
+    background-color: white;
+    padding: 1rem;
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
 
-	> * {
-		margin: 10px;
-		flex: 1;
-		padding: 1rem 2rem;
-		text-decoration: none;
-	}
+    > * {
+        margin: 10px;
+        flex: 1;
+        padding: 1rem 2rem;
+        text-decoration: none;
+    }
 
-	> :first-child {
-		@include buttonStyle(1, black, black);
-	}
+    > :first-child {
+        @include buttonStyle(1, black, black);
+    }
 
-	> :nth-child(2) {
-		@include buttonStyle(2, greenyellow, white);
-	}
-	> :nth-child(3) {
-		@include buttonStyle(3, greenyellow, white);
-	}
+    > :nth-child(2) {
+        @include buttonStyle(2, greenyellow, white);
+    }
+    > :nth-child(3) {
+        @include buttonStyle(3, greenyellow, white);
+    }
 }
 
 // PX TO REM MIXIN //
 .remall {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: flex-start;
-	list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    list-style: none;
 
-	> *:not(:last-child) {
-		margin-right: 1rem;
-	}
+    > *:not(:last-child) {
+        margin-right: 1rem;
+    }
 
-	> * {
-		background-color: lightpink;
-		&:first-child {
-			@include toRem(padding, 50px);
-		}
+    > * {
+        background-color: lightpink;
+        &:first-child {
+            @include toRem(padding, 50px);
+        }
 
-		&:nth-child(2) {
-			@include toRem(margin-top, 50px);
-			@include toRem(padding, 20px, 60px);
-		}
+        &:nth-child(2) {
+            @include toRem(margin-top, 50px);
+            @include toRem(padding, 20px, 60px);
+        }
 
-		&:nth-child(3) {
-			> span {
-				@include toRem(font-size, 32px);
-			}
-			@include toRem(margin, 20px, 60px);
-			@include toRem(padding, 20px, 10px, 15px, 40px);
-		}
-		&:nth-child(4) {
-			@include toRem(padding-left, 80px);
-			@include toRem(padding-right, 20px);
-			@include toRem(font-size, 32px);
-		}
-		&:nth-child(5) {
-			@include toRem(height, 300px);
-			@include toRem(width, 500px);
-			@include toRem(padding, 20px);
-		}
-		&:nth-child(6) {
-			> span {
-				@include toRem(line-height, 50px);
-			}
-			@include toRem(padding, 0px, 50px);
-		}
-		&:nth-child(7) {
-			@include toRem(margin-top, -75px);
-			@include toRem(padding, 20px);
-		}
-	}
+        &:nth-child(3) {
+            > span {
+                @include toRem(font-size, 32px);
+            }
+            @include toRem(margin, 20px, 60px);
+            @include toRem(padding, 20px, 10px, 15px, 40px);
+        }
+        &:nth-child(4) {
+            @include toRem(padding-left, 80px);
+            @include toRem(padding-right, 20px);
+            @include toRem(font-size, 32px);
+        }
+        &:nth-child(5) {
+            @include toRem(height, 300px);
+            @include toRem(width, 500px);
+            @include toRem(padding, 20px);
+        }
+        &:nth-child(6) {
+            > span {
+                @include toRem(line-height, 50px);
+            }
+            @include toRem(padding, 0px, 50px);
+        }
+        &:nth-child(7) {
+            @include toRem(margin-top, -75px);
+            @include toRem(padding, 20px);
+        }
+    }
 }
 
 // BOX SHADOW MIXIN //
 .boxShadow {
-	display: flex;
-	flex-wrap: wrap;
-	> * {
-		padding: 30px;
-		background-color: lightblue;
-		margin: 30px;
-	}
-	> :first-child {
-		@include box-shadow(top-left, 20px, 0, rgba(black, 0.5));
-	}
+    display: flex;
+    flex-wrap: wrap;
+    > * {
+        padding: 30px;
+        background-color: lightblue;
+        margin: 30px;
+    }
+    > :first-child {
+        @include box-shadow(top-left, 20px, 0, rgba(black, 0.5));
+    }
 
-	> :nth-child(2) {
-		@include box-shadow(top, 20px, 0, rgba(black, 0.5));
-	}
-	> :nth-child(3) {
-		@include box-shadow(top-right, 20px, 0, rgba(black, 0.5));
-	}
-	> :nth-child(4) {
-		@include box-shadow(right, 20px, 0, rgba(black, 0.5));
-	}
-	> :nth-child(5) {
-		@include box-shadow(bottom-right, 20px, 0, rgba(black, 0.5));
-	}
-	> :nth-child(6) {
-		@include box-shadow(bottom, 20px, 0, rgba(black, 0.5));
-	}
-	> :nth-child(7) {
-		@include box-shadow(bottom-left, 20px, 0, rgba(black, 0.5));
-	}
-	> :nth-child(8) {
-		@include box-shadow(left, 20px, 0, rgba(black, 0.5));
-	}
-	> :last-child {
-		@include box-shadow(around, 0, 20px, rgba(black, 0.5));
-	}
+    > :nth-child(2) {
+        @include box-shadow(top, 20px, 0, rgba(black, 0.5));
+    }
+    > :nth-child(3) {
+        @include box-shadow(top-right, 20px, 0, rgba(black, 0.5));
+    }
+    > :nth-child(4) {
+        @include box-shadow(right, 20px, 0, rgba(black, 0.5));
+    }
+    > :nth-child(5) {
+        @include box-shadow(bottom-right, 20px, 0, rgba(black, 0.5));
+    }
+    > :nth-child(6) {
+        @include box-shadow(bottom, 20px, 0, rgba(black, 0.5));
+    }
+    > :nth-child(7) {
+        @include box-shadow(bottom-left, 20px, 0, rgba(black, 0.5));
+    }
+    > :nth-child(8) {
+        @include box-shadow(left, 20px, 0, rgba(black, 0.5));
+    }
+    > :last-child {
+        @include box-shadow(around, 0, 20px, rgba(black, 0.5));
+    }
 }
 
 // BOX SHADOW MIXIN (using inset)//
 .boxShadowInset {
-	display: flex;
-	flex-wrap: wrap;
-	margin: -30px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: -30px;
 
-	> * {
-		padding: 30px;
-		background-color: lightblue;
-		margin: 30px;
-	}
-	> :first-child {
-		@include box-shadow(top-left, 10px, 0, rgba(black, 0.25), 0, inset);
-	}
+    > * {
+        padding: 30px;
+        background-color: lightblue;
+        margin: 30px;
+    }
+    > :first-child {
+        @include box-shadow(top-left, 10px, 0, rgba(black, 0.25), 0, inset);
+    }
 
-	> :nth-child(2) {
-		@include box-shadow(top, 10px, 0, rgba(black, 0.25), 0, inset);
-	}
-	> :nth-child(3) {
-		@include box-shadow(top-right, 10px, 0, rgba(black, 0.25), 0, inset);
-	}
-	> :nth-child(4) {
-		@include box-shadow(right, 10px, 0, rgba(black, 0.25), 0, inset);
-	}
-	> :nth-child(5) {
-		@include box-shadow(bottom-right, 10px, 0, rgba(black, 0.25), 0, inset);
-	}
-	> :nth-child(6) {
-		@include box-shadow(bottom, 10px, 0, rgba(black, 0.25), 0, inset);
-	}
-	> :nth-child(7) {
-		@include box-shadow(bottom-left, 10px, 0, rgba(black, 0.25), 0, inset);
-	}
-	> :nth-child(8) {
-		@include box-shadow(left, 10px, 0, rgba(black, 0.25), 0, inset);
-	}
-	> :last-child {
-		@include box-shadow(around, 0, 5px, rgba(black, 0.5), 0, inset);
-	}
+    > :nth-child(2) {
+        @include box-shadow(top, 10px, 0, rgba(black, 0.25), 0, inset);
+    }
+    > :nth-child(3) {
+        @include box-shadow(top-right, 10px, 0, rgba(black, 0.25), 0, inset);
+    }
+    > :nth-child(4) {
+        @include box-shadow(right, 10px, 0, rgba(black, 0.25), 0, inset);
+    }
+    > :nth-child(5) {
+        @include box-shadow(bottom-right, 10px, 0, rgba(black, 0.25), 0, inset);
+    }
+    > :nth-child(6) {
+        @include box-shadow(bottom, 10px, 0, rgba(black, 0.25), 0, inset);
+    }
+    > :nth-child(7) {
+        @include box-shadow(bottom-left, 10px, 0, rgba(black, 0.25), 0, inset);
+    }
+    > :nth-child(8) {
+        @include box-shadow(left, 10px, 0, rgba(black, 0.25), 0, inset);
+    }
+    > :last-child {
+        @include box-shadow(around, 0, 5px, rgba(black, 0.5), 0, inset);
+    }
 }
 
 // OUTLINE MIXIN //
 .outline {
-	display: flex;
-	flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 
-	> * {
-		margin: 20px;
-		background-color: brown;
-		color: white;
-		padding: 10px 20px;
-	}
-	> :first-child {
-		@include outline(solid, 2px, 10px, black, out);
-	}
-	> :nth-child(2) {
-		@include outline(dashed, 2px, 10px, black, out);
-	}
-	> :nth-child(3) {
-		@include outline(dotted, 2px, 10px, black, out);
-	}
-	> :nth-child(4) {
-		@include outline(solid, 1px, 2px, white, in);
-	}
-	> :nth-child(5) {
-		@include outline(dashed, 1px, 0, white, in);
-	}
-	> :nth-child(6) {
-		@include outline(dotted, 1px, 5px, white, in);
-	}
+    > * {
+        margin: 20px;
+        background-color: brown;
+        color: white;
+        padding: 10px 20px;
+    }
+    > :first-child {
+        @include outline(solid, 2px, 10px, black, out);
+    }
+    > :nth-child(2) {
+        @include outline(dashed, 2px, 10px, black, out);
+    }
+    > :nth-child(3) {
+        @include outline(dotted, 2px, 10px, black, out);
+    }
+    > :nth-child(4) {
+        @include outline(solid, 1px, 2px, white, in);
+    }
+    > :nth-child(5) {
+        @include outline(dashed, 1px, 0, white, in);
+    }
+    > :nth-child(6) {
+        @include outline(dotted, 1px, 5px, white, in);
+    }
 }
 
 // TRIANGLE MIXIN //
 .triangle {
-	display: flex;
-	flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 
-	> * {
-		position: relative;
-		margin: 20px;
-		padding: 20px;
-		min-width: 200px;
-		color: white;
-		text-align: center;
-		background-color: cornflowerblue;
-	}
+    > * {
+        position: relative;
+        margin: 20px;
+        padding: 20px;
+        min-width: 200px;
+        color: white;
+        text-align: center;
+        background-color: cornflowerblue;
+    }
 
-	> :first-child {
-		@include pseudo(both) {
-			top: 0;
-			left: 0;
-		}
+    > :first-child {
+        @include pseudo(both) {
+            top: 0;
+            left: 0;
+        }
 
-		&::before {
-			@include triangle(aliceblue, top-left, 20px);
-		}
+        &::before {
+            @include triangle(aliceblue, top-left, 20px);
+        }
 
-		&::after {
-			@include triangle(red, top-left, 10px);
-		}
-	}
-	> :nth-child(2) {
-		@include pseudo(both) {
-			left: 0;
-			right: 0;
-			margin: 0 auto;
-		}
+        &::after {
+            @include triangle(red, top-left, 10px);
+        }
+    }
+    > :nth-child(2) {
+        @include pseudo(both) {
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
 
-		&::before {
-			@include triangle(cornflowerblue, top, 20px) {
-				top: -20px;
-			}
-		}
-		&::after {
-			@include triangle(aliceblue, top, 10px) {
-				top: -10px;
-			}
-		}
-	}
-	> :nth-child(3) {
-		@include pseudo {
-			top: 0;
-			right: 0;
-			@include triangle(red, top-right, 20px);
-		}
-	}
-	> :nth-child(4) {
-		@include pseudo(both) {
-			top: 0;
-			bottom: 0;
-			margin: auto 0;
-		}
-		&::before {
-			@include triangle(cornflowerblue, right, 20px) {
-				right: -20px;
-			}
-		}
-		&::after {
-			@include triangle(aliceblue, right, 10px) {
-				right: -10px;
-			}
-		}
-	}
-	> :nth-child(5) {
-		@include pseudo(both) {
-			bottom: 0;
-			right: 0;
-		}
-		&::before {
-			@include triangle(aliceblue, bottom-right, 20px);
-		}
-		&::after {
-			@include triangle(red, bottom-right, 10px);
-		}
-	}
-	> :nth-child(6) {
-		@include pseudo(both) {
-			left: 0;
-			right: 0;
-			margin: 0 auto;
-		}
-		&::before {
-			@include triangle(cornflowerblue, bottom, 20px) {
-				bottom: -20px;
-			}
-		}
-		&::after {
-			@include triangle(aliceblue, bottom, 10px) {
-				bottom: -10px;
-			}
-		}
-	}
-	> :nth-child(7) {
-		@include pseudo(both) {
-			bottom: 0;
-			left: 0;
-		}
-		&::before {
-			@include triangle(aliceblue, bottom-left, 20px);
-		}
-		&::after {
-			@include triangle(red, bottom-left, 10px);
-		}
-	}
-	> :last-child {
-		@include pseudo(both) {
-			top: 0;
-			bottom: 0;
-			margin: auto 0;
-		}
+        &::before {
+            @include triangle(cornflowerblue, top, 20px) {
+                top: -20px;
+            }
+        }
+        &::after {
+            @include triangle(aliceblue, top, 10px) {
+                top: -10px;
+            }
+        }
+    }
+    > :nth-child(3) {
+        @include pseudo {
+            top: 0;
+            right: 0;
+            @include triangle(red, top-right, 20px);
+        }
+    }
+    > :nth-child(4) {
+        @include pseudo(both) {
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+        }
+        &::before {
+            @include triangle(cornflowerblue, right, 20px) {
+                right: -20px;
+            }
+        }
+        &::after {
+            @include triangle(aliceblue, right, 10px) {
+                right: -10px;
+            }
+        }
+    }
+    > :nth-child(5) {
+        @include pseudo(both) {
+            bottom: 0;
+            right: 0;
+        }
+        &::before {
+            @include triangle(aliceblue, bottom-right, 20px);
+        }
+        &::after {
+            @include triangle(red, bottom-right, 10px);
+        }
+    }
+    > :nth-child(6) {
+        @include pseudo(both) {
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
+        &::before {
+            @include triangle(cornflowerblue, bottom, 20px) {
+                bottom: -20px;
+            }
+        }
+        &::after {
+            @include triangle(aliceblue, bottom, 10px) {
+                bottom: -10px;
+            }
+        }
+    }
+    > :nth-child(7) {
+        @include pseudo(both) {
+            bottom: 0;
+            left: 0;
+        }
+        &::before {
+            @include triangle(aliceblue, bottom-left, 20px);
+        }
+        &::after {
+            @include triangle(red, bottom-left, 10px);
+        }
+    }
+    > :last-child {
+        @include pseudo(both) {
+            top: 0;
+            bottom: 0;
+            margin: auto 0;
+        }
 
-		&::before {
-			@include triangle(cornflowerblue, left, 20px) {
-				left: -20px;
-			}
-		}
-		&::after {
-			@include triangle(aliceblue, left, 10px) {
-				left: -10px;
-			}
-		}
-	}
+        &::before {
+            @include triangle(cornflowerblue, left, 20px) {
+                left: -20px;
+            }
+        }
+        &::after {
+            @include triangle(aliceblue, left, 10px) {
+                left: -10px;
+            }
+        }
+    }
 }
 
 // LONG SHADOW MIXIN //
 @keyframes shadowMove {
-	0% {
-		@include long-shadow(darken(lightsalmon, 10%), 200, bottom-left);
-	}
-	100% {
-		@include long-shadow(darken(lightsalmon, 10%), 200, left);
-	}
+    0% {
+        @include long-shadow(darken(lightsalmon, 10%), 200, bottom-left);
+    }
+    100% {
+        @include long-shadow(darken(lightsalmon, 10%), 200, left);
+    }
 }
 .longShadow {
-	display: flex;
-	flex-wrap: wrap;
-	color: white;
-	margin: -10px;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    margin: -10px;
 
-	> * {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 18px;
-		font-weight: bold;
-		width: 300px;
-		height: 150px;
-		margin: 10px;
-		padding: 20px;
-		text-align: center;
-		background-color: lightsalmon;
-		overflow: hidden;
+    > * {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: bold;
+        width: 300px;
+        height: 150px;
+        margin: 10px;
+        padding: 20px;
+        text-align: center;
+        background-color: lightsalmon;
+        overflow: hidden;
 
-		p {
-			position: relative;
-			z-index: 1;
-		}
-		span {
-			position: relative;
-			z-index: -1;
-		}
-	}
+        p {
+            position: relative;
+            z-index: 1;
+        }
+        span {
+            position: relative;
+            z-index: -1;
+        }
+    }
 
-	> :first-child {
-		@include long-shadow(darken(lightsalmon, 10%), 200, top-left, 5px);
-	}
-	> :nth-child(2) {
-		@include long-shadow(darken(lightsalmon, 10%), 200, top);
-	}
-	> :nth-child(3) {
-		@include long-shadow(darken(lightsalmon, 10%), 200, top-right);
-	}
-	> :nth-child(4) {
-		@include long-shadow(darken(lightsalmon, 10%), 200, right, 10px);
-	}
-	> :nth-child(5) {
-		@include long-shadow(darken(lightsalmon, 10%), 200);
-	}
-	> :nth-child(6) {
-		@include long-shadow(darken(lightsalmon, 10%), 200, bottom, 10px);
-	}
-	> :nth-child(7) {
-		animation: shadowMove 2s infinite;
-		// @include long-shadow(darken(lightsalmon, 10%), 200, bottom-left);
-	}
-	> :nth-child(8) {
-		@include long-shadow(darken(lightsalmon, 10%), 200, left);
-	}
+    > :first-child {
+        @include long-shadow(darken(lightsalmon, 10%), 200, top-left, 5px);
+    }
+    > :nth-child(2) {
+        @include long-shadow(darken(lightsalmon, 10%), 200, top);
+    }
+    > :nth-child(3) {
+        @include long-shadow(darken(lightsalmon, 10%), 200, top-right);
+    }
+    > :nth-child(4) {
+        @include long-shadow(darken(lightsalmon, 10%), 200, right, 10px);
+    }
+    > :nth-child(5) {
+        @include long-shadow(darken(lightsalmon, 10%), 200);
+    }
+    > :nth-child(6) {
+        @include long-shadow(darken(lightsalmon, 10%), 200, bottom, 10px);
+    }
+    > :nth-child(7) {
+        animation: shadowMove 2s infinite;
+        // @include long-shadow(darken(lightsalmon, 10%), 200, bottom-left);
+    }
+    > :nth-child(8) {
+        @include long-shadow(darken(lightsalmon, 10%), 200, left);
+    }
 }
 
 // CUT TEXT MIXIN //
 .cutText {
-	> * {
-		display: inline-block;
-		text-decoration: none;
-		background-color: royalblue;
-		padding: 20px 50px;
+    > * {
+        display: inline-block;
+        text-decoration: none;
+        background-color: royalblue;
+        padding: 20px 50px;
 
-		> span {
-			color: white;
-			font-weight: bold;
-			text-transform: uppercase;
-			font-size: 3rem;
+        > span {
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 3rem;
 
-			@include cut-text(darkblue);
-		}
-	}
+            @include cut-text(darkblue);
+        }
+    }
 }
 
 // TEXT STYLE MIXIN //
 .textStyle {
-	> * {
-		display: inline-block;
-		text-decoration: none;
-		color: royalblue;
-		padding: 20px 50px;
-	}
+    > * {
+        display: inline-block;
+        text-decoration: none;
+        color: royalblue;
+        padding: 20px 50px;
+    }
 
-	> :first-child {
-		@include text-style(1, darkblue, 2rem);
-	}
-	> :nth-child(2) {
-		@include text-style(2, lightcoral, 3rem);
-	}
+    > :first-child {
+        @include text-style(1, darkblue, 2rem);
+    }
+    > :nth-child(2) {
+        @include text-style(2, lightcoral, 3rem);
+    }
 }

@@ -9,6 +9,7 @@ Check out the Demofile if you want.
 	- [Triangle mixin](#triangle-mixin)
 	- [Text blend mixin](#text-blend-mixin)
 	- [Text stroke mixin](#text-stroke-mixin)
+	- [Text gradient mixin](#text-gradient-mixin)
 
 <br/>
 
@@ -307,14 +308,17 @@ Allowed `width`, `color`
 		color: red;
 		font-size: 300%;
 		font-weight: bold;
+
 		&:first-child {
 			@include textStroke(1px);
 		}
+
 		&:nth-child(2) {
 			@include textStroke(5px, rgb(0, 0, 0)) {
 				font-size: 500%;
 			}
 		}
+		
 		&:last-child {
 			@include textStroke(3px, lightcoral) {
 				letter-spacing: 2px;
@@ -350,5 +354,83 @@ Allowed `width`, `color`
 			letter-spacing: 2px;
 		}
 	}	
+}
+```
+
+<br/>
+
+## Text gradient mixin
+
+> The mixin
+
+```scss
+@mixin textGradient($direction, $colors...) {
+    display: inline-block;
+    background: linear-gradient($direction, $colors);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+```
+
+> How to use
+
+Needed value `direction`, `color`
+
+```scss
+.element {
+    display: inline-flex;
+    flex-direction: column;
+
+    h3 {
+        font-size: 200%;
+        text-transform: uppercase;
+
+        &:first-child {
+            @include textGradient(to right, #4158d0, #c850c0, #ffcc70);
+        }
+
+        &:nth-child(2) {
+            @include textGradient(25deg, #12c2e9, #c471ed, #fc00ff);
+        }
+
+        &:last-child {
+            @include textGradient(to bottom right, #0099f7 50%, #db36a4 50%);
+        }
+    }
+}
+```
+
+> Same like
+
+```scss {
+.element {
+    display: inline-flex;
+    flex-direction: column;
+
+    h3 {
+        font-size: 200%;
+        text-transform: uppercase;
+
+        &:first-child {
+			display: inline-block;
+            background: linear-gradient(to right, #4158d0, #c850c0, #ffcc70);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+        }
+
+        &:nth-child(2) {
+            display: inline-block;
+            background: linear-gradient(25deg, #12c2e9, #c471ed, #fc00ff);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+        }
+
+        &:last-child {
+            display: inline-block;
+			background: linear-gradient(to bottom right, #0099f7 50%, #db36a4 50%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+        }
+    }
 }
 ```
