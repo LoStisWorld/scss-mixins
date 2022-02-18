@@ -311,11 +311,13 @@ Allowed `width`, `color`
 		&:first-child {
 			@include textStroke(1px);
 		}
+		
 		&:nth-child(2) {
 			@include textStroke(5px, rgb(0, 0, 0)) {
 				font-size: 500%;
 			}
 		}
+		
 		&:last-child {
 			@include textStroke(3px, lightcoral) {
 				letter-spacing: 2px;
