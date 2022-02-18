@@ -13,7 +13,7 @@ Check out the Demofile if you want.
 
 ## Pseudo mixin
 
-The mixin
+> The mixin
 
 ```scss
 @mixin pseudo($pseudo: before, $pos: absolute, $content: "") {
@@ -40,7 +40,7 @@ The mixin
 }
 ```
 
-How to use
+> How to use
 
 Default values `::before`, `position: absolute`, `content: ""`
 
@@ -62,7 +62,7 @@ Default values `::before`, `position: absolute`, `content: ""`
 }
 ```
 
-Same like
+> Same like
 
 ```css
 .element {
@@ -94,7 +94,7 @@ Same like
 
 ## Triangle mixin
 
-The mixin
+> The mixin
 
 ```scss
 @mixin triangle($color, $direction, $size) {
@@ -133,7 +133,7 @@ The mixin
 }
 ```
 
-How to use
+> How to use
 
 Default values `width: 0`, `height: 0`, `border-style: solid`
 
@@ -161,7 +161,7 @@ Directions `top`, `top-right`, `top-left`, `bottom`, `bottom-right`, `bottom-lef
 }
 ```
 
-Same like
+> Same like
 
 ```scss
 .element {
