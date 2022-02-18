@@ -307,6 +307,7 @@ Allowed `width`, `color`
 		color: red;
 		font-size: 300%;
 		font-weight: bold;
+		
 		&:first-child {
 			@include textStroke(1px);
 		}
