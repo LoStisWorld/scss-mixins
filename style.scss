@@ -5,10 +5,10 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: aliceblue;
 
-    &[data-page-id='gallery'] main {
+    &[data-page-id="gallery"] main {
         padding: 3rem 0;
     }
 }
@@ -63,7 +63,7 @@ main {
     }
 }
 
-@import './mixins';
+@import "./mixins";
 
 // MEDIA QUERY MIXIN //
 .pageContainer {
@@ -90,7 +90,7 @@ main {
     padding: 1rem;
     position: relative;
 
-    @include pseudo(both, relative, '★') {
+    @include pseudo(both, relative, "★") {
         margin: 0 1rem;
         padding: 0 1rem;
         color: white;
@@ -220,7 +220,7 @@ main {
         padding: 2rem;
         text-align: center;
 
-        @include itemCount('# ', after) {
+        @include itemCount("# ", after) {
             color: #fff;
         }
 
@@ -277,58 +277,6 @@ main {
 // GALLERY MIXIN //
 .imgContainer {
     @include easyGallery(5, 5px);
-}
-
-// PX TO REM MIXIN //
-.remall {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    list-style: none;
-
-    > *:not(:last-child) {
-        margin-right: 1rem;
-    }
-
-    > * {
-        background-color: lightpink;
-        &:first-child {
-            @include toRem(padding, 50px);
-        }
-
-        &:nth-child(2) {
-            @include toRem(margin-top, 50px);
-            @include toRem(padding, 20px, 60px);
-        }
-
-        &:nth-child(3) {
-            > span {
-                @include toRem(font-size, 32px);
-            }
-            @include toRem(margin, 20px, 60px);
-            @include toRem(padding, 20px, 10px, 15px, 40px);
-        }
-        &:nth-child(4) {
-            @include toRem(padding-left, 80px);
-            @include toRem(padding-right, 20px);
-            @include toRem(font-size, 32px);
-        }
-        &:nth-child(5) {
-            @include toRem(height, 300px);
-            @include toRem(width, 500px);
-            @include toRem(padding, 20px);
-        }
-        &:nth-child(6) {
-            > span {
-                @include toRem(line-height, 50px);
-            }
-            @include toRem(padding, 0px, 50px);
-        }
-        &:nth-child(7) {
-            @include toRem(margin-top, -75px);
-            @include toRem(padding, 20px);
-        }
-    }
 }
 
 // BOX SHADOW MIXIN //

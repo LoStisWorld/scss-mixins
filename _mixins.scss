@@ -1,5 +1,5 @@
 // PSEUDO MIXIN //
-@mixin pseudo($pseudo: before, $pos: absolute, $content: '') {
+@mixin pseudo($pseudo: before, $pos: absolute, $content: "") {
     @if $pseudo == before {
         &::before {
             content: $content;
@@ -206,7 +206,12 @@
 }
 
 // CONTAINER HOVER ICON MIXIN //
-@mixin iconOnHover($background: transparent, $direction: left, $icon: '✚', $time: 0.2s) {
+@mixin iconOnHover(
+    $background: transparent,
+    $direction: left,
+    $icon: "✚",
+    $time: 0.2s
+) {
     position: relative;
     overflow: hidden;
 
@@ -287,27 +292,6 @@
     }
 
     @content;
-}
-
-// PX TO REM MIXIN //
-@mixin toRem($value, $size, $sizeRight: null, $sizeBottom: null, $sizeLeft: null) {
-    $baseFontSize: 16px; // Base font-size on body element (standard is 16px)
-
-    @if $size and not $sizeRight and not $sizeBottom and not $sizeLeft {
-        $calcAll: #{$size / $baseFontSize}rem;
-        #{$value}: $calcAll;
-    } @else if $size and $sizeRight and not $sizeBottom and not $sizeLeft {
-        $calc2Ways: #{$size / $baseFontSize}rem #{$sizeRight / $baseFontSize}rem;
-        #{$value}: $calc2Ways;
-    } @else if $size and $sizeRight and $sizeBottom and not $sizeLeft {
-        $calc3Ways: #{$size / $baseFontSize}rem #{$sizeRight / $baseFontSize}rem #{$sizeBottom / $baseFontSize}rem;
-        #{$value}: $calc3Ways;
-    } @else if $size and $sizeRight and $sizeBottom and $sizeLeft {
-        $calc4Ways: #{$size / $baseFontSize}rem #{$sizeRight / $baseFontSize}rem #{$sizeBottom / $baseFontSize}rem #{$sizeLeft / $baseFontSize}rem;
-        #{$value}: $calc4Ways;
-    } @else {
-        @error "Property #{$value} or #{$size} or #{$sizeRight} or #{$sizeBottom} or #{$sizeLeft} is wrong. You need to use px value everywhere!";
-    }
 }
 
 // BOX SHADOW MIXIN //
@@ -407,7 +391,12 @@
 }
 
 // CUT TEXT //
-@mixin cut-text($hoverColor, $time: 0.2s, $horizontal: 0.06em, $vertical: 0.03em) {
+@mixin cut-text(
+    $hoverColor,
+    $time: 0.2s,
+    $horizontal: 0.06em,
+    $vertical: 0.03em
+) {
     &:hover {
         color: currentColor;
     }

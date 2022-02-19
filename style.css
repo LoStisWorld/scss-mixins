@@ -7,11 +7,11 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: aliceblue;
 }
 
-body[data-page-id='gallery'] main {
+body[data-page-id="gallery"] main {
   padding: 3rem 0;
 }
 
@@ -431,69 +431,6 @@ main ul {
     margin: 0;
     max-width: inherit;
   }
-}
-
-.remall {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  list-style: none;
-}
-
-.remall > *:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.remall > * {
-  background-color: lightpink;
-}
-
-.remall > *:first-child {
-  padding: 3.125rem;
-}
-
-.remall > *:nth-child(2) {
-  margin-top: 3.125rem;
-  padding: 1.25rem 3.75rem;
-}
-
-.remall > *:nth-child(3) {
-  margin: 1.25rem 3.75rem;
-  padding: 1.25rem 0.625rem 0.9375rem 2.5rem;
-}
-
-.remall > *:nth-child(3) > span {
-  font-size: 2rem;
-}
-
-.remall > *:nth-child(4) {
-  padding-left: 5rem;
-  padding-right: 1.25rem;
-  font-size: 2rem;
-}
-
-.remall > *:nth-child(5) {
-  height: 18.75rem;
-  width: 31.25rem;
-  padding: 1.25rem;
-}
-
-.remall > *:nth-child(6) {
-  padding: 0rem 3.125rem;
-}
-
-.remall > *:nth-child(6) > span {
-  line-height: 3.125rem;
-}
-
-.remall > *:nth-child(7) {
-  margin-top: -4.6875rem;
-  padding: 1.25rem;
 }
 
 .boxShadow {
