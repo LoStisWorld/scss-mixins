@@ -79,7 +79,7 @@ main {
     @include mediaSize(custom, 1200px) {
         width: 85%;
     }
-    @include mediaSize(custom, 1600px, min) {
+    @include mediaSize(custom, 1600px) {
         width: 80%;
     }
 }

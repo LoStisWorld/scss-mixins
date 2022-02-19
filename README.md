@@ -13,6 +13,7 @@ Check out the Demofile if you want.
   - [Item counter mixin](#item-counter-mixin)
   - [Link hover mixin](#link-hover-mixin)
   - [Container hover mixin](#container-hover-mixin)
+  - [Media Query mixin](#media-query-mixin)
 
 <br/>
 
@@ -369,10 +370,10 @@ Allowed `width`, `color`
 
 ```scss
 @mixin textGradient($direction, $colors...) {
-  display: inline-block;
-  background: linear-gradient($direction, $colors);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+	display: inline-block;
+	background: linear-gradient($direction, $colors);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 ```
 
@@ -649,6 +650,141 @@ Allowed values `$background`, `$direction`, `$icon`, `$time`
 
   &:hover::before {
     transform: translate(0, 0);
+  }
+}
+```
+
+<br/>
+
+## Media Query mixin
+
+> The mixin
+
+```scss
+@mixin mediaSize($size, $width: null, $minmax: null) {
+    @if $size == mobile {
+        @media (max-width: 544px) {
+            @content;
+        }
+    } @else if $size == mobileUP {
+        @media (min-width: 545px) {
+            @content;
+        }
+    } @else if $size == tablet {
+        @media (min-width: 769px) {
+            @content;
+        }
+    } @else if $size == desktop {
+        @media (min-width: 1025px) {
+            @content;
+        }
+    } @else if $size == desktopXL {
+        @media (min-width: 1281px) {
+            @content;
+        }
+    } @else if $size == desktopXXL {
+        @media (min-width: 1921px) {
+            @content;
+        }
+    } @else if $size == desktop4K {
+        @media (min-width: 2561px) {
+            @content;
+        }
+    } @else if $size == custom {
+        @if $width and $minmax {
+            @if $minmax == min {
+                @media (min-width: $width) {
+                    @content;
+                }
+            } @else if $minmax == max {
+                @media (max-width: $width) {
+                    @content;
+                }
+            } @else {
+                @error "Property #{$minmax} must be either min or max.";
+            }
+        } @else if $width and not $minmax {
+            @media (min-width: $width) {
+                @content;
+            }
+        } @else {
+            @error "Property #{$width} or #{$minmax} is wrong.";
+        }
+    } @else {
+        @error "Property #{$size} is wrong.";
+    }
+}
+```
+
+> How to use
+
+Needed values `$size`
+
+Allowed values `$size`, `$width`, `$minmax`
+
+Possible values
+```
+$size values
+- mobile (max-width: 544px)
+- mobileUP (min-width: 545px)
+- tablet (min-width: 769px)
+- desktop (min-width: 1025px)
+- desktopXL (min-width: 1281px)
+- desktopXXL (min-width: 1921px)
+- desktop4K (min-width: 2561px)
+- custom (needs $width value)
+
+$minmax values
+- min
+- max
+```
+If you use `custom` as `$size` value, you need to set a `$width`.
+Default `$minmax` value is `min-width`
+
+```scss
+.element {
+  @include mediaSize(custom, 544px, max) {
+    width: 100%;
+  }
+  @include mediaSize(mobileUP) {
+    width: 95%;
+  }
+  @include mediaSize(tablet) {
+    width: 90%;
+  }
+  @include mediaSize(desktop) {
+    width: 85%;
+  }
+  @include mediaSize(custom, 1200px) {
+    width: 85%;
+  }
+  @include mediaSize(custom, 1600px) {
+    width: 75%;
+  }
+}
+```
+
+> Same like
+
+```scss 
+.element {
+  @media (max-width: 544px) {
+    width: 100%;
+  }
+  @media (min-width: 545px) {
+    width: 95%;
+  }
+  @media (min-width: 769px) {
+    width: 90%;
+  }
+  @media (min-width: 1025px) {
+    width: 85%;
+  }
+  @media (min-width: 1200px) {
+    width: 85%;
+  }
+  @media (min-width: 1600px) {
+    width: 75%;
   }
 }
 ```

@@ -140,36 +140,36 @@
 }
 
 // MEDIA QUERY MIXIN //
-@mixin mediaSize($type, $width: null, $minmax: null) {
-    @if $type == mobile {
+@mixin mediaSize($size, $width: null, $minmax: null) {
+    @if $size == mobile {
         @media (max-width: 544px) {
             @content;
         }
-    } @else if $type == mobileUP {
+    } @else if $size == mobileUP {
         @media (min-width: 545px) {
             @content;
         }
-    } @else if $type == tablet {
+    } @else if $size == tablet {
         @media (min-width: 769px) {
             @content;
         }
-    } @else if $type == desktop {
+    } @else if $size == desktop {
         @media (min-width: 1025px) {
             @content;
         }
-    } @else if $type == desktopXL {
+    } @else if $size == desktopXL {
         @media (min-width: 1281px) {
             @content;
         }
-    } @else if $type == desktopXXL {
+    } @else if $size == desktopXXL {
         @media (min-width: 1921px) {
             @content;
         }
-    } @else if $type == desktop4K {
+    } @else if $size == desktop4K {
         @media (min-width: 2561px) {
             @content;
         }
-    } @else if $type == custom {
+    } @else if $size == custom {
         @if $width and $minmax {
             @if $minmax == min {
                 @media (min-width: $width) {
@@ -190,7 +190,7 @@
             @error "Property #{$width} or #{$minmax} is wrong.";
         }
     } @else {
-        @error "Property #{$type} is wrong.";
+        @error "Property #{$size} is wrong.";
     }
 }
 
