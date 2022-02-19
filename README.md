@@ -14,7 +14,7 @@ Check out the Demofile if you want.
   - [Link hover mixin](#link-hover-mixin)
   - [Container hover mixin](#container-hover-mixin)
   - [Media Query mixin](#media-query-mixin)
-
+<br/>
 
 **How to use the Visual Studio Code Snippets**
 If you want to use the Visual Studio Code Snippets, open your Visual Studio Code Editor and press F1 and search for `Preference: Configure User Snippets` then search for `scss.json`.
@@ -23,6 +23,7 @@ Open it and paste in the JSON Snippets below the mixins + save the file.
 
 **Use Snippets in Editor**
 Type in a SCSS file `lw`, then use the snippet you want.
+
 
 <br/>
 
