@@ -15,6 +15,15 @@ Check out the Demofile if you want.
   - [Container hover mixin](#container-hover-mixin)
   - [Media Query mixin](#media-query-mixin)
 
+
+**How to use the Visual Studio Code Snippets**
+If you want to use the Visual Studio Code Snippets, open your Visual Studio Code Editor and press F1 and search for `Preference: Configure User Snippets` then search for `scss.json`.
+
+Open it and paste in the JSON Snippets below the mixins + save the file.
+
+**Use Snippets in Editor**
+Type in a SCSS file `lw`, then use the snippet you want.
+
 <br/>
 
 ## Pseudo mixin
@@ -198,6 +207,18 @@ Directions `top`, `top-right`, `top-left`, `bottom`, `bottom-right`, `bottom-lef
   }
 }
 ```
+**Visual Studio Code Triangle JSON Snippet**
+```json
+{
+  "Triangle Mixin": {
+    "prefix": "lw-triangle",
+    "body": [
+      "@include triangle(${1:color}, ${2|up,right,down,left,top-right,bottom-right,bottom-left,top-left|}, ${3|6px,10px,12px,20px,24px,32px,48px,64px|});"
+    ],
+    "description": "Triangle Mixin"
+  },
+}
+```
 
 <br/>
 
@@ -282,6 +303,19 @@ Allowed `black`, `white`
 }
 ```
 
+**Visual Studio Code Text Blend JSON Snippet**
+```json
+{
+  "Text Blend": {
+    "prefix": "lw-textBlend",
+    "body": [
+      "@include textBlend(${1|black,white|});"
+    ],
+    "description": "Text Blend Mixin"
+  },
+}
+```
+
 <br/>
 
 ## Text stroke mixin
@@ -362,6 +396,19 @@ Allowed `width`, `color`
 }
 ```
 
+**Visual Studio Code Text Stroke JSON Snippet**
+```json
+{
+  "Text Stroke": {
+    "prefix": "lw-textStroke",
+    "body": [
+      "@include textStroke(${1:$width}, ${2:$color(optional)});"
+    ],
+    "description": "Text Stroke Mixin"
+  },
+}
+```
+
 <br/>
 
 ## Text gradient mixin
@@ -437,6 +484,19 @@ Needed values `direction`, `color`
       -webkit-text-fill-color: transparent;
     }
   }
+}
+```
+
+**Visual Studio Code Text Gradient JSON Snippet**
+```json
+{
+  "Text Gradient": {
+    "prefix": "lw-textGradient",
+    "body": [
+      "@include textGradient(${1|to right,to top,to bottom,to bottom left,to bottom right,to top left, to top right|}, ${2:$colors});"
+    ],
+    "description": "Text Gradient Mixin"
+  },
 }
 ```
 
@@ -561,6 +621,19 @@ Allowed values `$mainColor`
   &:focus-within {
     color: currentColor;
   }
+}
+```
+
+**Visual Studio Code Link Hover JSON Snippet**
+```json
+{
+  "Link Hover": {
+    "prefix": "lw-linkHover",
+    "body": [
+      "@include linkHover(${1:hover-color}, ${2:main-color(default currentColor)});"
+    ],
+    "description": "Link on hover"
+  },
 }
 ```
 
@@ -786,5 +859,20 @@ Default `$minmax` value is `min-width`
   @media (min-width: 1600px) {
     width: 75%;
   }
+}
+```
+
+**Visual Studio Code Media-Query JSON Snippet**
+```json
+{
+  "Media Querys": {
+    "prefix": "lw-mediaSize",
+    "body": [
+      "@include mediaSize(${1|mobile,mobileUp,tablet,desktop,desktopXL,desktopXXL,desktop4K,custom|}, ${2:$width}, ${3:$minmax}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Media Querys\n----------\nmobile = max-width: 544px\nmobileUp = min-width: 545px\ntablet = min-width: 769px\ndesktop = min-width: 1025px\ndesktopXL = min-width: 1281px\ndesktopXXL = min-width: 1921px\ndesktop4K = min-width: 2561px\n"
+  },
 }
 ```
