@@ -331,7 +331,7 @@
         } @else if $direction == left {
             box-shadow: -#{$size} 0 $blur $spread $color;
         } @else {
-            @error "Property #{$direction}, #{$size}, #{$spread} or #{$blur} is wrong. Use the right property for #{$direction} and px for #{$size}, #{$spread} and #{$blur}";
+            @error "Property #{$direction}, #{$size}, #{$spread} or #{$blur} is wrong.";
         }
     } @else if $inset == inset {
         @if $direction == around {
@@ -353,7 +353,7 @@
         } @else if $direction == left {
             box-shadow: inset $size 0 $blur $spread $color;
         } @else {
-            @error "Property #{$direction}, #{$size}, #{$spread} or #{$blur} is wrong. Use the right property for #{$direction} and px for #{$size}, #{$spread} and #{$blur}";
+            @error "Property #{$direction}, #{$size}, #{$spread} or #{$blur} is wrong.";
         }
     } @else {
         @error "Property #{$inset} is wrong. You need to use inset to use it";
