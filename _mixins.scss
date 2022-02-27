@@ -450,3 +450,11 @@
         @content;
     }
 }
+
+// BORDER GRADIENT MIXIN //
+@mixin borderGradient($direction, $width, $colors...) {
+    border-style: solid;
+    border-image: linear-gradient($direction, $colors);
+    border-image-slice: 1;
+    border-image-width: $width;
+}

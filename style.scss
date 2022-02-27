@@ -606,3 +606,36 @@ main {
         }
     }
 }
+
+// BORDER GRADIENT MIXIN //
+.borderGradient {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 80%;
+
+    &__item {
+        min-width: 300px;
+        min-height: 300px;
+        background-color: #222;
+
+        &:first-child {
+            @include borderGradient(45deg, 10px, red, orange, yellow);
+        }
+        &:nth-child(2) {
+            @include borderGradient(to top, 10px, green, lightgreen, coral);
+        }
+        &:last-child {
+            @include borderGradient(
+                -45deg,
+                10px,
+                red,
+                orange,
+                lightblue,
+                blue,
+                pink,
+                yellow
+            );
+        }
+    }
+}

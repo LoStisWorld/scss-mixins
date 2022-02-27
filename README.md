@@ -14,6 +14,7 @@ Check out the Demofile if you want.
   - [Link hover mixin](#link-hover-mixin)
   - [Container hover mixin](#container-hover-mixin)
   - [Media Query mixin](#media-query-mixin)
+  - [Border Gradient mixin](#border-gradient-mixin)
 <br/>
 
 **How to use the Visual Studio Code Snippets**
@@ -874,6 +875,55 @@ Default `$minmax` value is `min-width`
       "}"
     ],
     "description": "Media Querys\n----------\nmobile = max-width: 544px\nmobileUp = min-width: 545px\ntablet = min-width: 769px\ndesktop = min-width: 1025px\ndesktopXL = min-width: 1281px\ndesktopXXL = min-width: 1921px\ndesktop4K = min-width: 2561px\n"
+  },
+}
+```
+
+<br/>
+
+## Border Gradient mixin
+
+> The mixin
+
+```scss
+@mixin borderGradient($direction, $width, $colors...) {
+    border-style: solid;
+    border-image: linear-gradient($direction, $colors);
+    border-image-slice: 1;
+    border-image-width: $width;
+}
+```
+
+> How to use
+
+Needed values `$direction`, `$width`, `$colors`
+
+```scss
+.element {
+  @include borderGradient(45deg, 10px, red, orange, yellow);
+}
+```
+
+> Same like
+
+```scss 
+.element {
+  border-style: solid;
+  border-image: linear-gradient(45deg, red, orange, yellow);
+  border-image-slice: 1;
+  border-image-width: 10px;
+}
+```
+
+**Visual Studio Code Border Gradient JSON Snippet**
+```json
+{
+  "Border Gradient": {
+    "prefix": "lw-borderGradient",
+    "body": [
+      "@include borderGradient(${1|to right,to top,to bottom,to bottom left,to bottom right,to top left, to top right|}, ${2:$width}, ${3:$colors});"
+    ],
+    "description": "Border Gradient Mixin"
   },
 }
 ```
