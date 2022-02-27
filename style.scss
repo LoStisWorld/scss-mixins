@@ -100,7 +100,7 @@ main {
 
 // FLEX GRID MIXIN //
 .flexGrid {
-    @include flexGrid(10, 10px);
+    @include flexGrid(8, 1rem, false);
 
     > * {
         text-align: center;
@@ -276,7 +276,7 @@ main {
 
 // GALLERY MIXIN //
 .imgContainer {
-    @include easyGallery(5, 5px);
+    @include easyGallery(5, 1rem);
 }
 
 // BOX SHADOW MIXIN //

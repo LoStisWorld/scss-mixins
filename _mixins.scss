@@ -59,28 +59,40 @@
 }
 
 // FLEX GRID MIXIN //
-@mixin flexGrid($itemCount, $margin: 0) {
+@mixin flexGrid($itemCount, $margin: 0, $max-width: true) {
     display: flex;
     flex-wrap: wrap;
-    margin: -#{$margin * 2};
 
-    > * {
-        flex: 0 0 calc(100% / #{$itemCount});
-        margin: $margin;
-    }
-
-    @supports (display: grid) {
-        display: grid;
-        grid-template-columns: repeat($itemCount, 1fr);
-        grid-auto-rows: minmax(auto, 1fr);
-        gap: $margin;
-        margin: 0;
-
+    @if $margin > 0 {
+        margin: -#{$margin};
         > * {
-            flex: inherit;
-            margin: 0;
+            width: 100%;
+            margin: $margin;
         }
     }
+
+    > * {
+        flex: 0 0 calc((100% / #{$itemCount}) - #{$margin * 2});
+
+        @if $margin and $max-width == true {
+            max-width: calc(100% / #{$itemCount} - #{$margin});
+        } @else if $margin and $max-width == false {
+            max-width: $max-width;
+        }
+    }
+
+    // @supports (display: grid) {
+    //     display: grid;
+    //     grid-template-columns: repeat($itemCount, 1fr);
+    //     grid-auto-rows: minmax(auto, 1fr);
+    //     gap: $margin;
+    //     margin: 0;
+
+    //     > * {
+    //         flex: inherit;
+    //         margin: 0;
+    //     }
+    // }
 }
 
 // TEXT BLEND MODE MIXIN //
