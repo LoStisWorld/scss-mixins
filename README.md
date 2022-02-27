@@ -1016,11 +1016,11 @@ $direction values
 ```json
 {
   "Long shadow": {
-		"prefix": "lw-longShadow",
-		"body": [
-		  "@include longShadow(${1:$color}, ${2|5,10,20,30,40,50,60,70,80,90,100,150,200|}, ${3|to right,to top,to bottom,to bottom left,to bottom right,to top left, to top right|}, ${4|1px,2px,3px,4px,5px,6px,8px,10px,20px|});"
-		],
-		"description": "Long Shawow Mixin"
+    "prefix": "lw-longShadow",
+    "body": [
+      "@include longShadow(${1:$color}, ${2|5,10,20,30,40,50,60,70,80,90,100,150,200|}, ${3|to right,to top,to bottom,to bottom left,to bottom right,to top left, to top right|}, ${4|1px,2px,3px,4px,5px,6px,8px,10px,20px|});"
+    ],
+    "description": "Long Shawow Mixin"
   },
 }
 ```
