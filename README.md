@@ -1084,7 +1084,8 @@ $max-width values
 - false
 ```
 
-> Choose your $margin wisely beauce your container will make negative margin
+> Choose your $margin wisely because your container will make negative margin.
+
 > Solution can be another container around your mixin with overflow hidden, body overflow-x hidden or do not use more margin than the possible spacing to other elements/body 
 
 ```scss
