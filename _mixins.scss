@@ -60,58 +60,38 @@
 
 // FLEX GRID MIXIN //
 @mixin flexGrid($itemCount, $margin: 0, $max-width: true) {
-    @supports not (display: grid) {
-        display: flex;
-        flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 
-        @if $margin > 0 {
-            margin: -#{$margin};
-
-            > * {
-                margin: $margin;
-            }
-        }
+    @if $margin > 0 {
+        margin: -#{$margin / 2};
 
         > * {
-            width: 100%;
-
-            @if $max-width == true {
-                @if $margin > 0 {
-                    flex: 0 0 calc((100% / #{$itemCount}) - #{$margin * 2});
-                } @else {
-                    flex: 0 0 calc(100% / #{$itemCount});
-                }
-            } @else if $max-width == false {
-                @if $margin > 0 {
-                    flex: 1 1 calc((100% / #{$itemCount}) - #{$margin * 2});
-                } @else {
-                    flex: 1 1 calc(100% / #{$itemCount});
-                }
-            } @else {
-                @error "Variable in #{$max-width} must be either true or false.";
-            }
-
-            @content;
+            margin: #{$margin / 2};
         }
     }
 
-    @supports (display: grid) {
-        display: grid;
-        gap: $margin;
+    > * {
+        width: 100%;
+
+        @if $max-width == true {
+            @if $margin > 0 {
+                flex: 0 0 calc((100% / #{$itemCount}) - #{$margin});
+            } @else {
+                flex: 0 0 calc(100% / #{$itemCount});
+            }
+        } @else if $max-width == false {
+            @if $margin > 0 {
+                flex: 1 1 calc((100% / #{$itemCount}) - #{$margin});
+            } @else {
+                flex: 1 1 calc(100% / #{$itemCount});
+            }
+        } @else {
+            @error "Variable in #{$max-width} must be either true or false.";
+        }
+
+        @content;
     }
-
-    // @supports (display: grid) {
-    //     display: grid;
-    //     grid-template-columns: repeat($itemCount, 1fr);
-    //     grid-auto-rows: minmax(auto, 1fr);
-    //     gap: $margin;
-    //     margin: 0;
-
-    //     > * {
-    //         flex: inherit;
-    //         margin: 0;
-    //     }
-    // }
 }
 
 // TEXT BLEND MODE MIXIN //

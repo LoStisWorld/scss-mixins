@@ -109,32 +109,24 @@ main ul {
   background-color: lightcoral;
 }
 
-@supports not (display: grid) {
-  .flexGrid {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    margin: -1rem;
-  }
-  .flexGrid > * {
-    margin: 1rem;
-  }
-  .flexGrid > * {
-    width: 100%;
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 calc((100% / 3) - 2rem);
-            flex: 0 0 calc((100% / 3) - 2rem);
-  }
+.flexGrid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: -5px;
 }
 
-@supports (display: grid) {
-  .flexGrid {
-    display: -ms-grid;
-    display: grid;
-    gap: 1rem;
-  }
+.flexGrid > * {
+  margin: 5px;
+}
+
+.flexGrid > * {
+  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 calc((100% / 4) - 10px);
+          flex: 1 1 calc((100% / 4) - 10px);
 }
 
 .flexGrid > * {

@@ -16,6 +16,7 @@ Check out the Demofile if you want.
   - [Media Query mixin](#media-query-mixin)
   - [Border Gradient mixin](#border-gradient-mixin)
   - [Long Shadow mixin](#long-shadow-mixin)
+  - [FlexGrid mixin](#flexgrid-mixin)
 <br/>
 
 **How to use the Visual Studio Code Snippets**
@@ -1021,6 +1022,121 @@ $direction values
       "@include longShadow(${1:$color}, ${2|5,10,20,30,40,50,60,70,80,90,100,150,200|}, ${3|to right,to top,to bottom,to bottom left,to bottom right,to top left, to top right|}, ${4|1px,2px,3px,4px,5px,6px,8px,10px,20px|});"
     ],
     "description": "Long Shawow Mixin"
+  },
+}
+```
+
+<br/>
+
+## FlexGrid mixin
+
+> The mixin
+
+```scss
+@mixin flexGrid($itemCount, $margin: 0, $max-width: true) {
+  display: flex;
+  flex-wrap: wrap;
+
+  @if $margin > 0 {
+    margin: -#{$margin / 2};
+
+    > * {
+      margin: #{$margin / 2};
+    }
+  }
+
+  > * {
+    width: 100%;
+
+    @if $max-width == true {
+      @if $margin > 0 {
+        flex: 0 0 calc((100% / #{$itemCount}) - #{$margin});
+      } @else {
+        flex: 0 0 calc(100% / #{$itemCount});
+      }
+    } @else if $max-width == false {
+      @if $margin > 0 {
+        flex: 1 1 calc((100% / #{$itemCount}) - #{$margin});
+      } @else {
+        flex: 1 1 calc(100% / #{$itemCount});
+      }
+    } @else {
+      @error "Variable in #{$max-width} must be either true or false.";
+    }
+
+    @content;
+  }
+}
+```
+
+> How to use
+
+Needed values `$itemCount`
+
+Default value `$margin: 0`, `$max-width: true`
+
+Allowed values `$itemCount`, `$margin`, `$max-width`
+
+Possible values
+```
+$max-width values
+- true
+- false
+```
+
+> Choose your $margin wisely beauce your container will make negative margin
+> Solution can be another container around your mixin with overflow hidden, body overflow-x hidden or do not use more margin than the possible spacing to other elements/body 
+
+```scss
+.element {
+  @include flexGrid(4, 10px, false) {
+    min-width: 300px;
+  }
+
+  @include flexGrid(4, 2rem);
+}
+```
+
+> Same like
+
+```scss 
+Using $max-width = false
+.element {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
+
+  > * {
+    width: 100%;
+    margin: 5px;
+    flex: 1 1 calc((100% / 4) - 10px);
+    min-width: 300px;
+  }
+}
+
+Using no $max-width
+.element {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -1rem;
+
+  > * {
+    width: 100%;
+    margin: 1rem;
+    flex: 0 0 calc((100% / 4) - 2rem);
+  }
+}
+```
+
+**Visual Studio Code FlexGrid JSON Snippet**
+```json
+{
+  "FlexGrid": {
+    "prefix": "lw-flexGrid",
+    "body": [
+      "@include flexGrid(${1|1,2,3,4,5,6,7,8,9,10|}, ${2:$margin}, ${3|true,false|});"
+    ],
+    "description": "FlexGrid Mixin"
   },
 }
 ```
