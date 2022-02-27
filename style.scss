@@ -100,7 +100,7 @@ main {
 
 // FLEX GRID MIXIN //
 .flexGrid {
-    @include flexGrid(8, 1rem, false);
+    @include flexGrid(3, 1rem);
 
     > * {
         text-align: center;

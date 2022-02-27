@@ -60,25 +60,44 @@
 
 // FLEX GRID MIXIN //
 @mixin flexGrid($itemCount, $margin: 0, $max-width: true) {
-    display: flex;
-    flex-wrap: wrap;
+    @supports not (display: grid) {
+        display: flex;
+        flex-wrap: wrap;
 
-    @if $margin > 0 {
-        margin: -#{$margin};
+        @if $margin > 0 {
+            margin: -#{$margin};
+
+            > * {
+                margin: $margin;
+            }
+        }
+
         > * {
             width: 100%;
-            margin: $margin;
+
+            @if $max-width == true {
+                @if $margin > 0 {
+                    flex: 0 0 calc((100% / #{$itemCount}) - #{$margin * 2});
+                } @else {
+                    flex: 0 0 calc(100% / #{$itemCount});
+                }
+            } @else if $max-width == false {
+                @if $margin > 0 {
+                    flex: 1 1 calc((100% / #{$itemCount}) - #{$margin * 2});
+                } @else {
+                    flex: 1 1 calc(100% / #{$itemCount});
+                }
+            } @else {
+                @error "Variable in #{$max-width} must be either true or false.";
+            }
+
+            @content;
         }
     }
 
-    > * {
-        flex: 0 0 calc((100% / #{$itemCount}) - #{$margin * 2});
-
-        @if $margin and $max-width == true {
-            max-width: calc(100% / #{$itemCount} - #{$margin});
-        } @else if $margin and $max-width == false {
-            max-width: $max-width;
-        }
+    @supports (display: grid) {
+        display: grid;
+        gap: $margin;
     }
 
     // @supports (display: grid) {
