@@ -254,8 +254,12 @@
     flex-wrap: wrap;
     overflow: hidden;
 
-    @if $margin {
+    @if $margin > 0 {
         margin: -#{$margin / 2};
+        @supports (gap: 5px) {
+            gap: $margin;
+            margin: 0;
+        }
     }
 
     > * {
@@ -386,8 +390,9 @@
     @return $shadow;
 }
 
-@mixin long-shadow($color, $size, $direction: bottom-right, $blur: null) {
+@mixin longShadow($color, $size, $direction: bottom-right, $blur: null) {
     text-shadow: calc-shadow($color, $size, $blur, $direction);
+    @content;
 }
 
 // CUT TEXT //
@@ -454,7 +459,6 @@
 // BORDER GRADIENT MIXIN //
 @mixin borderGradient($direction, $width, $colors...) {
     border-style: solid;
-    border-image: linear-gradient($direction, $colors);
-    border-image-slice: 1;
-    border-image-width: $width;
+    border-width: $width;
+    border-image: linear-gradient($direction, $colors) 1;
 }

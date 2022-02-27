@@ -525,10 +525,10 @@ main {
 // LONG SHADOW MIXIN //
 @keyframes shadowMove {
     0% {
-        @include long-shadow(darken(lightsalmon, 10%), 200, bottom-left);
+        @include longShadow(darken(lightsalmon, 10%), 200, bottom-left);
     }
     100% {
-        @include long-shadow(darken(lightsalmon, 10%), 200, left);
+        @include longShadow(darken(lightsalmon, 10%), 200, left);
     }
 }
 .longShadow {
@@ -562,29 +562,29 @@ main {
     }
 
     > :first-child {
-        @include long-shadow(darken(lightsalmon, 10%), 200, top-left, 5px);
+        @include longShadow(darken(lightsalmon, 10%), 200, top-left, 5px);
     }
     > :nth-child(2) {
-        @include long-shadow(darken(lightsalmon, 10%), 200, top);
+        @include longShadow(darken(lightsalmon, 10%), 200, top);
     }
     > :nth-child(3) {
-        @include long-shadow(darken(lightsalmon, 10%), 200, top-right);
+        @include longShadow(darken(lightsalmon, 10%), 200, top-right);
     }
     > :nth-child(4) {
-        @include long-shadow(darken(lightsalmon, 10%), 200, right, 10px);
+        @include longShadow(darken(lightsalmon, 10%), 200, right, 10px);
     }
     > :nth-child(5) {
-        @include long-shadow(darken(lightsalmon, 10%), 200);
+        @include longShadow(darken(lightsalmon, 10%), 200);
     }
     > :nth-child(6) {
-        @include long-shadow(darken(lightsalmon, 10%), 200, bottom, 10px);
+        @include longShadow(darken(lightsalmon, 10%), 200, bottom, 10px);
     }
     > :nth-child(7) {
         animation: shadowMove 2s infinite;
-        // @include long-shadow(darken(lightsalmon, 10%), 200, bottom-left);
+        // @include longShadow(darken(lightsalmon, 10%), 200, bottom-left);
     }
     > :nth-child(8) {
-        @include long-shadow(darken(lightsalmon, 10%), 200, left);
+        @include longShadow(darken(lightsalmon, 10%), 200, left);
     }
 }
 
@@ -620,10 +620,10 @@ main {
         background-color: #222;
 
         &:first-child {
-            @include borderGradient(45deg, 10px, red, orange, yellow);
+            @include borderGradient(45deg, 5px, red, orange, yellow);
         }
         &:nth-child(2) {
-            @include borderGradient(to top, 10px, green, lightgreen, coral);
+            @include borderGradient(to top, 20px, green, lightgreen, coral);
         }
         &:last-child {
             @include borderGradient(

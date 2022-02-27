@@ -405,6 +405,13 @@ main ul {
   margin: -2.5px;
 }
 
+@supports (gap: 5px) {
+  .imgContainer {
+    gap: 5px;
+    margin: 0;
+  }
+}
+
 .imgContainer > * {
   display: block;
   -o-object-fit: cover;
@@ -974,26 +981,23 @@ main ul {
 
 .borderGradient__item:first-child {
   border-style: solid;
-  -o-border-image: linear-gradient(45deg, red, orange, yellow);
-     border-image: linear-gradient(45deg, red, orange, yellow);
-  border-image-slice: 1;
-  border-image-width: 10px;
+  border-width: 5px;
+  -o-border-image: linear-gradient(45deg, red, orange, yellow) 1;
+     border-image: linear-gradient(45deg, red, orange, yellow) 1;
 }
 
 .borderGradient__item:nth-child(2) {
   border-style: solid;
-  -o-border-image: linear-gradient(to top, green, lightgreen, coral);
-     border-image: -webkit-gradient(linear, left bottom, left top, from(green), color-stop(lightgreen), to(coral));
-     border-image: linear-gradient(to top, green, lightgreen, coral);
-  border-image-slice: 1;
-  border-image-width: 10px;
+  border-width: 20px;
+  -o-border-image: linear-gradient(to top, green, lightgreen, coral) 1;
+     border-image: -webkit-gradient(linear, left bottom, left top, from(green), color-stop(lightgreen), to(coral)) 1;
+     border-image: linear-gradient(to top, green, lightgreen, coral) 1;
 }
 
 .borderGradient__item:last-child {
   border-style: solid;
-  -o-border-image: linear-gradient(-45deg, red, orange, lightblue, blue, pink, yellow);
-     border-image: linear-gradient(-45deg, red, orange, lightblue, blue, pink, yellow);
-  border-image-slice: 1;
-  border-image-width: 10px;
+  border-width: 10px;
+  -o-border-image: linear-gradient(-45deg, red, orange, lightblue, blue, pink, yellow) 1;
+     border-image: linear-gradient(-45deg, red, orange, lightblue, blue, pink, yellow) 1;
 }
 /*# sourceMappingURL=style.css.map */

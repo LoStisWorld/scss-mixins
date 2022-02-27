@@ -15,6 +15,7 @@ Check out the Demofile if you want.
   - [Container hover mixin](#container-hover-mixin)
   - [Media Query mixin](#media-query-mixin)
   - [Border Gradient mixin](#border-gradient-mixin)
+  - [Long Shadow mixin](#long-shadow-mixin)
 <br/>
 
 **How to use the Visual Studio Code Snippets**
@@ -888,9 +889,8 @@ Default `$minmax` value is `min-width`
 ```scss
 @mixin borderGradient($direction, $width, $colors...) {
     border-style: solid;
-    border-image: linear-gradient($direction, $colors);
-    border-image-slice: 1;
-    border-image-width: $width;
+    border-width: $width;
+    border-image: linear-gradient($direction, $colors) 1;
 }
 ```
 
@@ -909,9 +909,8 @@ Needed values `$direction`, `$width`, `$colors`
 ```scss 
 .element {
   border-style: solid;
-  border-image: linear-gradient(45deg, red, orange, yellow);
-  border-image-slice: 1;
-  border-image-width: 10px;
+  border-width: 10px;
+  border-image: linear-gradient(45deg, red, orange, yellow) 1;
 }
 ```
 
@@ -919,11 +918,109 @@ Needed values `$direction`, `$width`, `$colors`
 ```json
 {
   "Border Gradient": {
-    "prefix": "lw-borderGradient",
-    "body": [
-      "@include borderGradient(${1|to right,to top,to bottom,to bottom left,to bottom right,to top left, to top right|}, ${2:$width}, ${3:$colors});"
-    ],
-    "description": "Border Gradient Mixin"
+		"prefix": "lw-borderGradient",
+		"body": [
+		  "@include borderGradient(${1|to right,to top,to bottom,to bottom left,to bottom right,to top left, to top right|}, ${2|1px,2px,3px,4px,5px,6px,8px,10px,20px|}, ${3:$colors});"
+		],
+		"description": "Border Gradient Mixin"
+  },
+}
+```
+
+<br/>
+
+## Long Shadow mixin
+
+> The mixin
+
+```scss
+@function calc-shadow($color, $size, $blur, $direction) {
+    $shadow: 0px 0px $blur $color;
+
+    @for $i from 1 through $size {
+        @if $direction == top-left {
+            $shadow: $shadow, -#{$i}px -#{$i}px $blur $color;
+        } @else if $direction == top {
+            $shadow: $shadow, 0 -#{$i}px $blur $color;
+        } @else if $direction == top-right {
+            $shadow: $shadow, #{$i}px -#{$i}px $blur $color;
+        } @else if $direction == right {
+            $shadow: $shadow, #{$i}px 0 $blur $color;
+        } @else if $direction == bottom-right {
+            $shadow: $shadow, #{$i}px #{$i}px $blur $color;
+        } @else if $direction == bottom {
+            $shadow: $shadow, 0 #{$i}px $blur $color;
+        } @else if $direction == bottom-left {
+            $shadow: $shadow, -#{$i}px #{$i}px $blur $color;
+        } @else if $direction == left {
+            $shadow: $shadow, -#{$i}px 0 $blur $color;
+        } @else {
+            @error "Property #{$direction} is wrong.";
+        }
+    }
+    @return $shadow;
+}
+
+@mixin long-shadow($color, $size, $direction: bottom-right, $blur: null) {
+    text-shadow: calc-shadow($color, $size, $blur, $direction);
+    @content;
+}
+```
+
+> How to use
+
+Needed values `$color`, `$size`
+
+Default value `$direction: bottom-right`, `$blur: null`
+
+Allowed values `$color`, `$size`, `$direction`, `$blur`
+
+Possible values
+```
+$direction values
+- top
+- top-left
+- top-right
+- right
+- bottom-right
+- bottom
+- bottom-left
+- left
+```
+
+```scss
+.element {
+  @include longShadow(lightsalmon, 10, top-left, 5px);
+}
+```
+
+> Same like
+
+```scss 
+.element {
+  text-shadow: 0px 0px 5px lightsalmon, 
+  -1px -1px 5px lightsalmon, 
+  -2px -2px 5px lightsalmon, 
+  -3px -3px 5px lightsalmon, 
+  -4px -4px 5px lightsalmon, 
+  -5px -5px 5px lightsalmon, 
+  -6px -6px 5px lightsalmon, 
+  -7px -7px 5px lightsalmon, 
+  -8px -8px 5px lightsalmon, 
+  -9px -9px 5px lightsalmon, 
+  -10px -10px 5px lightsalmon;
+}
+```
+
+**Visual Studio Code Long Shadow JSON Snippet**
+```json
+{
+  "Long shadow": {
+		"prefix": "lw-longShadow",
+		"body": [
+		  "@include longShadow(${1:$color}, ${2|5,10,20,30,40,50,60,70,80,90,100,150,200|}, ${3|to right,to top,to bottom,to bottom left,to bottom right,to top left, to top right|}, ${4|1px,2px,3px,4px,5px,6px,8px,10px,20px|});"
+		],
+		"description": "Long Shawow Mixin"
   },
 }
 ```
