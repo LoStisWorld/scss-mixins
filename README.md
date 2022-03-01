@@ -581,11 +581,16 @@ Allowed values `$content`, `$pseudo`
 ```scss
 @mixin linkHover($hoverColor, $color: currentColor) {
   color: $color;
-
-  &:hover,
-  &:focus,
-  &:focus-within {
+  :active {
     color: $hoverColor;
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      color: $hoverColor;
+    }
   }
 }
 ```
