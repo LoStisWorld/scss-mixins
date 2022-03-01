@@ -425,10 +425,10 @@ Allowed `width`, `color`
 
 ```scss
 @mixin textGradient($direction, $colors...) {
-	display: inline-block;
-	background: linear-gradient($direction, $colors);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+  display: inline-block;
+  background: linear-gradient($direction, $colors);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 ```
 
@@ -1157,7 +1157,7 @@ Using no $max-width
 
 ## Slice Text mixin
 
-[Demo](https://codepen.io/LoSti/pen/mdmpKgX/d17534e88742c01a022ce64351e1e1a1?editors=0100) on Codepen
+[Demo](https://codepen.io/LoSti/pen/mdmpKgX) on Codepen
 
 > The mixin
 
@@ -1355,7 +1355,7 @@ HTML example
 
 ## Neumorphism mixin
 
-[Demo](https://codepen.io/LoSti/pen/MWmOZMz/b217c05fdf5f60a3e5b3fac6cf9745f7?editors=1100) on Codepen
+[Demo](https://codepen.io/LoSti/pen/MWmOZMz) on Codepen
 
 > The mixin
 
