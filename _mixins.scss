@@ -407,43 +407,61 @@
 }
 
 // CUT TEXT //
-@mixin cut-text(
-    $hoverColor,
-    $time: 0.2s,
+@mixin sliceText(
+    $hoverColor: currentColor,
+    $time: 0.1s,
     $horizontal: 0.06em,
     $vertical: 0.03em
 ) {
-    &:hover {
-        color: currentColor;
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: color 0.1s $time linear;
+    line-height: 0;
+    z-index: 1;
+
+    &::before,
+    &::after {
+        content: attr(data-slice);
+        display: inline-flex;
+        color: transparent;
+        text-align: center;
+        width: 100%;
+        height: 0.5em;
+        transform: translate(0, 0);
+        transition: transform $time linear, color 0.1s $time linear;
+        user-select: none;
+        overflow: hidden;
+        font-size: 1em;
+        z-index: -1;
     }
 
-    @supports (clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%)) {
-        position: relative;
-        transition: color 0s $time ease;
-        z-index: 1;
+    &::before {
+        align-items: flex-end;
+    }
+    &::after {
+        align-items: flex-start;
+    }
+
+    :active {
+        transition: none;
+        color: transparent;
 
         &::before,
         &::after {
-            content: attr(data-cuttext);
-            position: absolute;
-            color: currentColor;
-            text-align: center;
-            left: 0;
-            right: 0;
-            margin: auto;
-            transform: translate(0, 0);
-            transition: all $time ease;
-            z-index: -1;
+            color: $hoverColor;
+            transition: transform $time linear;
         }
         &::before {
-            -webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+            transform: translate(-#{$horizontal}, -#{$vertical});
         }
         &::after {
-            -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
-            clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0% 100%);
+            transform: translate($horizontal, $vertical);
         }
+    }
 
+    @media (hover: hover) {
         &:hover,
         &:focus,
         &:focus-within,
@@ -454,6 +472,7 @@
             &::before,
             &::after {
                 color: $hoverColor;
+                transition: transform $time linear;
             }
             &::before {
                 transform: translate(-#{$horizontal}, -#{$vertical});
@@ -462,9 +481,9 @@
                 transform: translate($horizontal, $vertical);
             }
         }
-
-        @content;
     }
+
+    @content;
 }
 
 // BORDER GRADIENT MIXIN //

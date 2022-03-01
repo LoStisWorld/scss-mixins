@@ -602,7 +602,7 @@ main {
             text-transform: uppercase;
             font-size: 3rem;
 
-            @include cut-text(darkblue);
+            @include sliceText(darkblue);
         }
     }
 }

@@ -17,6 +17,8 @@ Check out the Demofile if you want.
   - [Border Gradient mixin](#border-gradient-mixin)
   - [Long Shadow mixin](#long-shadow-mixin)
   - [FlexGrid mixin](#flexgrid-mixin)
+  - [Slice Text mixin](#slice-text-mixin)
+  - [Neumorphism mixin](#neumorphism-mixin)
 <br/>
 
 **How to use the Visual Studio Code Snippets**
@@ -1141,3 +1143,379 @@ Using no $max-width
   },
 }
 ```
+
+<br/>
+
+## Slice Text mixin
+
+> The mixin
+
+```scss
+@mixin sliceText(
+    $hoverColor: currentColor,
+    $time: 0.1s,
+    $horizontal: 0.06em,
+    $vertical: 0.03em
+) {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  transition: color 0.1s $time linear;
+  line-height: 0;
+  z-index: 1;
+
+  &::before,
+  &::after {
+    content: attr(data-slice);
+    display: inline-flex;
+    color: transparent;
+    text-align: center;
+    width: 100%;
+    height: 0.5em;
+    transform: translate(0, 0);
+    transition: transform $time linear, color 0.1s $time linear;
+    user-select: none;
+    overflow: hidden;
+    font-size: 1em;
+    z-index: -1;
+  }
+
+  &::before {
+    align-items: flex-end;
+  }
+  &::after {
+    align-items: flex-start;
+  }
+
+  :active {
+    transition: none;
+    color: transparent;
+
+    &::before,
+    &::after {
+      color: $hoverColor;
+      transition: transform $time linear;
+    }
+    &::before {
+      transform: translate(-#{$horizontal}, -#{$vertical});
+    }
+    &::after {
+      transform: translate($horizontal, $vertical);
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      transition: none;
+      color: transparent;
+
+      &::before,
+      &::after {
+        color: $hoverColor;
+        transition: transform $time linear;
+      }
+      &::before {
+        transform: translate(-#{$horizontal}, -#{$vertical});
+      }
+      &::after {
+        transform: translate($horizontal, $vertical);
+      }
+    }
+  }
+
+  @content;
+}
+```
+
+> How to use
+
+Needed values needed
+
+Default value `$hoverColor: currentColor`, `$time: 0.1s`, `$horizontal: 0.06em`, `$vertical: 0.03em`
+
+Allowed values `$hoverColor`, `$time`, `$horizontal`, `$vertical`
+
+> This mixin (your elements) need a "data-slice" attribute in the HTML tag, if you can't set this yourself, do it via JS.
+
+```html
+HTML example
+<span data-slice="Katana">Katana</span>
+```
+
+```scss
+.element {
+  @include sliceText(#4f4e55, 500ms, 5px, 1px);
+}
+```
+
+[Demo](https://codepen.io/LoSti/pen/mdmpKgX/d17534e88742c01a022ce64351e1e1a1?editors=0100) auf Codepen
+
+> Same like
+
+```scss 
+.element {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: color 0.1s 500ms linear;
+  line-height: 0;
+  z-index: 1;
+
+  &::before,
+  &::after {
+    content: attr(data-slice);
+    display: inline-flex;
+    color: transparent;
+    text-align: center;
+    width: 100%;
+    height: 0.5em;
+    transform: translate(0, 0);
+    transition: transform 500ms linear, color 0.1s 500ms linear;
+    user-select: none;
+    overflow: hidden;
+    font-size: 1em;
+    z-index: -1;
+  }
+
+  &::before {
+    align-items: flex-end;
+  }
+  &::after {
+    align-items: flex-start;
+  }
+
+  :active {
+    transition: none;
+    color: transparent;
+
+    &::before,
+    &::after {
+      color: #4f4e55;
+      transition: transform 500ms linear;
+    }
+    &::before {
+      transform: translate(-5px, -1px);
+    }
+    &::after {
+      transform: translate(5px, 1px);
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      transition: none;
+      color: transparent;
+
+      &::before,
+      &::after {
+        color: #4f4e55;
+        transition: transform 500ms linear;
+      }
+      &::before {
+        transform: translate(-5px, -1px);
+      }
+      &::after {
+        transform: translate(5px, 1px);
+      }
+    }
+  }
+}
+```
+
+**Visual Studio Code Slice Text JSON Snippet**
+```json
+{
+  "Slice Text": {
+    "prefix": "lw-sliceText",
+    "body": [
+      "@include sliceText(${1:$hoverColor(default currentColor)}, ${2:$time (default 100ms)}, ${3:$horizontal transform}, ${4:$vertical transform});"
+    ],
+    "description": "Slice Text Mixin"
+  },
+}
+```
+
+<br/>
+
+## Neumorphism mixin
+
+> The mixin
+
+```scss
+@mixin neumo($bc, $d: tl, $hv: false, $sd: 8px) {
+  // $bc = item background-color
+  // $hv = hover (true or false)
+  // $d = shadow direction (tl,t,tr,br,b,bl)
+  // $sd = shadow (offset distance)
+
+  background: $bc;
+  $blur: #{$sd * 2 - 1};
+  $i: #{$sd / 2};
+  $saturation: 8.5;
+
+  // INSIDE VALUE
+  $tl-i: inset -#{$i} -#{$i} #{$sd} darken($bc, $saturation),
+      inset #{$i} #{$i} #{$sd} lighten($bc, $saturation);
+  $t-i: inset 0 -#{$i} #{$sd} darken($bc, $saturation),
+      inset 0 #{$i} #{$sd} lighten($bc, $saturation);
+  $tr-i: inset #{$i} -#{$i} #{$sd} darken($bc, $saturation),
+      inset -#{$i} #{$i} #{$sd} lighten($bc, $saturation);
+  $br-i: inset #{$i} #{$i} #{$sd} darken($bc, $saturation),
+      inset -#{$i} -#{$i} #{$sd} lighten($bc, $saturation);
+  $b-i: inset 0 #{$i} #{$sd} darken($bc, $saturation),
+      inset 0 -#{$i} #{$sd} lighten($bc, $saturation);
+  $bl-i: inset -#{$i} #{$i} #{$sd} darken($bc, $saturation),
+      inset #{$i} -#{$i} #{$sd} lighten($bc, $saturation);
+
+  // OUTSIDE VALUE
+  $tl: #{$sd} #{$sd} #{$blur} darken($bc, $saturation),
+      -#{$sd} -#{$sd} #{$blur} lighten($bc, $saturation);
+  $t: 0 #{$sd} #{$blur} darken($bc, $saturation), 0 -#{$sd} #{$blur} lighten($bc, $saturation);
+  $tr: -#{$sd} #{$sd} #{$blur} darken($bc, $saturation),
+      #{$sd} -#{$sd} #{$blur} lighten($bc, $saturation);
+  $br: -#{$sd} -#{$sd} #{$blur} darken($bc, $saturation),
+      #{$sd} #{$sd} #{$blur} lighten($bc, $saturation);
+  $b: 0 -#{$sd} #{$blur} darken($bc, $saturation), 0 #{$sd} #{$blur} lighten($bc, $saturation);
+  $bl: #{$sd} -#{$sd} #{$blur} darken($bc, $saturation),
+      -#{$sd} #{$sd} #{$blur} lighten($bc, $saturation);
+
+  @if $d == tl-i {
+    box-shadow: $tl-i;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $br;
+      }
+    }
+  } @else if $d == t-i {
+    box-shadow: $t-i;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $b;
+      }
+    }
+  } @else if $d == tr-i {
+    box-shadow: $tr-i;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $bl;
+      }
+    }
+  } @else if $d == br-i {
+    box-shadow: $br-i;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $tl;
+      }
+    }
+  } @else if $d == b-i {
+    box-shadow: $b-i;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $t;
+      }
+    }
+  } @else if $d == bl-i {
+    box-shadow: $bl-i;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $tr;
+      }
+    }
+  } @else if $d == tl {
+    box-shadow: $tl;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $br-i;
+      }
+    }
+  } @else if $d == t {
+    box-shadow: $t;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $b-i;
+      }
+    }
+  } @else if $d == tr {
+    box-shadow: $tr;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $bl-i;
+      }
+    }
+  } @else if $d == br {
+    box-shadow: $br;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $tl-i;
+      }
+    }
+  } @else if $d == b {
+    box-shadow: $b;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $t-i;
+      }
+    }
+  } @else if $d == bl {
+    box-shadow: $bl;
+    @if $hv == true {
+      &:hover {
+        box-shadow: $tr-i;
+      }
+    }
+  }
+  @content;
+}
+```
+
+> How to use
+
+Needed values `$bc`
+
+Default value `$d: tl`, `$hv: false`, `$sd: 8px`
+
+Allowed values `$bc`, `$d: tl`, `$hv: false`, `$sd: 8px`
+
+> $bc = item background-color
+> $hv = hover (true or false)
+> $d = shadow direction (tl, t, tr, br, b, bl)
+> $sd = shadow (offset distance)
+> $saturation = intense of shadow
+
+```scss
+.element {
+  @include neumo(#e4e2ee, br);
+}
+```
+[Demo](https://codepen.io/LoSti/pen/MWmOZMz/b217c05fdf5f60a3e5b3fac6cf9745f7?editors=1100) auf Codepen
+
+> Same like
+
+```scss 
+.element {
+  background: #e4e2ee;
+  box-shadow: 8px 8px 15px #cbc7de, -8px -8px 15px #fdfdfe;
+}
+```
+
+**Visual Studio Code Neumorphism JSON Snippet**
+```json
+{
+  "Neumorphism": {
+    "prefix": "lw-neumo",
+    "body": [
+      "@include neumo(${1:$background-color}, ${2|tl,t,tr,br,b,bl|}, ${3|true,false|}, ${4|4px,8px,12px,16px,20px,24px,28px,32px|});"
+    ],
+    "description": "Neumorphism Mixin"
+  },
+}
+```
+
+
