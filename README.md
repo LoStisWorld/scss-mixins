@@ -419,6 +419,8 @@ Allowed `width`, `color`
 
 ## Text gradient mixin
 
+[Demo](https://codepen.io/LoSti/pen/MWEwGpa) on Codepen
+
 > The mixin
 
 ```scss
@@ -892,6 +894,8 @@ Default `$minmax` value is `min-width`
 
 ## Border Gradient mixin
 
+[Demo](https://codepen.io/LoSti/pen/ZEaMwLR) on Codepen
+
 > The mixin
 
 ```scss
@@ -1153,7 +1157,7 @@ Using no $max-width
 
 ## Slice Text mixin
 
-[Demo](https://codepen.io/LoSti/pen/mdmpKgX/d17534e88742c01a022ce64351e1e1a1?editors=0100) auf Codepen
+[Demo](https://codepen.io/LoSti/pen/mdmpKgX/d17534e88742c01a022ce64351e1e1a1?editors=0100) on Codepen
 
 > The mixin
 
