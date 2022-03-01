@@ -1153,6 +1153,8 @@ Using no $max-width
 
 ## Slice Text mixin
 
+[Demo](https://codepen.io/LoSti/pen/mdmpKgX/d17534e88742c01a022ce64351e1e1a1?editors=0100) auf Codepen
+
 > The mixin
 
 ```scss
@@ -1256,8 +1258,6 @@ HTML example
 }
 ```
 
-[Demo](https://codepen.io/LoSti/pen/mdmpKgX/d17534e88742c01a022ce64351e1e1a1?editors=0100) auf Codepen
-
 > Same like
 
 ```scss 
@@ -1350,6 +1350,8 @@ HTML example
 <br/>
 
 ## Neumorphism mixin
+
+[Demo](https://codepen.io/LoSti/pen/MWmOZMz/b217c05fdf5f60a3e5b3fac6cf9745f7?editors=1100) on Codepen
 
 > The mixin
 
@@ -1499,7 +1501,6 @@ Allowed values `$bc`, `$d: tl`, `$hv: false`, `$sd: 8px`
   @include neumo(#e4e2ee, br);
 }
 ```
-[Demo](https://codepen.io/LoSti/pen/MWmOZMz/b217c05fdf5f60a3e5b3fac6cf9745f7?editors=1100) auf Codepen
 
 > Same like
 
