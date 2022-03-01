@@ -1041,6 +1041,8 @@ $direction values
 
 ## FlexGrid mixin
 
+[Demo](https://codepen.io/LoSti/pen/eYeQrOY) on Codepen
+
 > The mixin
 
 ```scss
