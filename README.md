@@ -230,6 +230,8 @@ Directions `top`, `top-right`, `top-left`, `bottom`, `bottom-right`, `bottom-lef
 
 ## Text blend mixin
 
+[Demo](https://codepen.io/LoSti/pen/OJOadjV) on Codepen
+
 > The mixin
 
 ```scss

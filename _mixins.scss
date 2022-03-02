@@ -209,10 +209,15 @@
 @mixin linkHover($hoverColor, $color: currentColor) {
     color: $color;
 
-    &:hover,
-    &:focus,
-    &:focus-within {
+    &:active {
         color: $hoverColor;
+    }
+    @media (hover: hover) {
+        &:hover,
+        &:focus,
+        &:focus-within {
+            color: $hoverColor;
+        }
     }
 }
 
@@ -254,8 +259,14 @@
         @content;
     }
 
-    &:hover::before {
+    :active::before {
         transform: translate(0, 0);
+    }
+
+    @media (hover: hover) {
+        &:hover::before {
+            transform: translate(0, 0);
+        }
     }
 }
 
