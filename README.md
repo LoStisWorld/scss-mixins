@@ -1041,46 +1041,49 @@ $direction values
 
 <br/>
 
-## FlexGrid mixin
+## FlexContainer mixin
 
 [Demo](https://codepen.io/LoSti/pen/eYeQrOY) on Codepen
 
 > The mixin
 
 ```scss
-@mixin flexGrid($itemCount, $margin: 0, $max-width: true) {
-  display: flex;
-  flex-wrap: wrap;
-
-  @if $margin > 0 {
-    margin: -#{$margin / 2};
+@mixin flexContainer($itemCount, $spacing: 0px, $max-width: true) {
+    display: flex;
+    flex-wrap: wrap;
 
     > * {
-      margin: #{$margin / 2};
+        width: 100%;
+        flex-basis: calc(#{100% / $itemCount} - #{$spacing / $itemCount} * #{$itemCount - 1});
+
+        &:not(:nth-child(-n+#{$itemCount})) {
+            margin-top: $spacing;
+        }
+
+        &:not(:nth-child(#{$itemCount}n+#{$itemCount})) {
+            margin-right: $spacing;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        @if $max-width == true {
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+
+        @else if $max-width == false {
+            flex-shrink: 1;
+            flex-grow: 1;
+        }
+
+        @else {
+            @error "Variable in #{$max-width} must be either true or false.";
+        }
     }
-  }
 
-  > * {
-    width: 100%;
-
-    @if $max-width == true {
-      @if $margin > 0 {
-        flex: 0 0 calc((100% / #{$itemCount}) - #{$margin});
-      } @else {
-        flex: 0 0 calc(100% / #{$itemCount});
-      }
-    } @else if $max-width == false {
-      @if $margin > 0 {
-        flex: 1 1 calc((100% / #{$itemCount}) - #{$margin});
-      } @else {
-        flex: 1 1 calc(100% / #{$itemCount});
-      }
-    } @else {
-      @error "Variable in #{$max-width} must be either true or false.";
-    }
-
-    @content;
-  }
+    @content
 }
 ```
 
@@ -1090,7 +1093,7 @@ Needed values `$itemCount`
 
 Default value `$margin: 0`, `$max-width: true`
 
-Allowed values `$itemCount`, `$margin`, `$max-width`
+Allowed values `$itemCount`, `$spacing`, `$max-width`
 
 Possible values
 ```
@@ -1105,11 +1108,11 @@ $max-width values
 
 ```scss
 .element {
-  @include flexGrid(4, 10px, false) {
+  @include flexContainer(4, 10px, false) {
     min-width: 300px;
   }
 
-  @include flexGrid(4, 2rem);
+  @include flexContainer(4, 2rem);
 }
 ```
 
