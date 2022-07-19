@@ -16,7 +16,7 @@ Check out the Demofile if you want.
   - [Media Query mixin](#media-query-mixin)
   - [Border Gradient mixin](#border-gradient-mixin)
   - [Long Shadow mixin](#long-shadow-mixin)
-  - [FlexGrid mixin](#flexgrid-mixin)
+  - [FlexContainer mixin](#flexcontainer-mixin)
   - [Slice Text mixin](#slice-text-mixin)
   - [Neumorphism mixin](#neumorphism-mixin)
 <br/>
